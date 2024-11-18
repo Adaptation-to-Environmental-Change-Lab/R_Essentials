@@ -6,7 +6,7 @@ format:
     html:
         toc: true
         toc-location: left
-        toc-depth: 2
+        toc-depth: 3
         theme: simplex
         embed-resources: true
         code-fold: true
@@ -25,9 +25,8 @@ crossref:
 editor_options:
     chunk_output_type: console
 execute:
-    cache: true
+    cache: false
     warning: false
-    echo: false
 ---
 
 ```{r setup, include=FALSE}
@@ -47,7 +46,7 @@ Make sure you have the following set and ready:
 
 **In the below instructions...**
 
-**EXERCISE 1:** are bits of code to execute/practice pieces to do, often with only hints on how to perform them.
+**EXERCISE X:** are bits of code to execute/practice pieces to do, often with only hints on how to perform them.
 
 **Output** indicates the typical output you should expect from a given instruction.
 
@@ -59,9 +58,511 @@ Paths in R can be relative or absolute. For example, in my environment my curren
 
 ```{r}
 #| echo: !expr format %in% c("html")
-
-
 getwd()
 ```
 
 Which is very long and hard to rememeber/type in. However, once set I can refer to files in this folder using *relative* paths (skipping the part leading TO the root directory). E.g. for the `class2` folder I can just write `"class2"` or `"./class2"`.
+
+**EXERCISE 1:** explore the `here` package - try to install it and see what it does? Why it can be helpful? See what happens after executing its main function `here()`. Compare it with running `getwd()`.
+
+■
+
+**EXERCISE 2:** Using the `here` package, create a path to the `class2` folder.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+here("class2")
+```
+
+■
+
+**EXERCISE 3:** Explore the `pacman` package. What does it do? How can it be helpful? What are the main functions? Try executing it on some package you have not installed before: `pacman::p_load("castor")`. What happened? Afterwards, use `pacman::p_loaded()` to see what packages are loaded and if the `castor` package is active in your workspace.
+
+::: {.callout-warning}
+## A thing on function arguments
+Before running code in this block, make sure to run `set.seed(123)` to ensure reproducibility of results.
+
+Try the following code snippets on your computer:
+
+```{r}
+#| code-fold: false
+set.seed(123)
+rnorm(5, 0, 1)
+```
+
+```{r}
+#| code-fold: false
+set.seed(123)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+```{r}
+#| code-fold: false
+set.seed(123)
+rnorm(n = 5, sd = 0, 1)
+```
+
+```{r}
+#| code-fold: false
+set.seed(123)
+rnorm(5, 1, 0)
+```
+
+```{r}
+#| code-fold: false
+set.seed(123)
+rnorm(n = 5, me = 0, sd = 1)
+```
+
+What general rules about function argument naming we can deduce from those?
+:::
+
+
+## R is just a huge calculator
+
+**Excersie 4:** Try to calculate the following expressions:
+
+- sum of 2 and 3
+- product of 11 and 345
+- logarithm of 1000 (based on the result, what base of logarithm have you used?)
+- square root of 144
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+2+3
+11*345
+log(1000)
+sqrt(144)
+```
+
+■
+
+**EXERCISE 5:** Execute `20 %% 3` and `20 %/% 3`. What do these operators do?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("hl")
+20 %% 3
+20 %/% 3
+```
+
+■
+
+**EXERCISE 6:** Compute the following expressions:
+
+- `2+3/5+2^3`
+- `2+3/(5+2)^3`
+- `2+3/(5+2^3)`
+- `2+3/(5+2)^3*2`
+- `2+3/(5+2)^(3*2)`
+
+Is the order of operations in R the same as in mathematics?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+2+3/5+2^3
+2+3/(5+2)^3
+2+3/(5+2^3)
+2+3/(5+2)^3*2
+2+3/(5+2)^(3*2)
+```
+
+■
+
+Results of mathematical operations can be assigned to named variables and subsequently used in mathematical calculations.
+
+**EXERCISE 7:** Create variables `d` and `h` describing the diameter and height of a cylinder that is 12 cm wide and 20 cm high. Calculate the volume of this cylinder and assign it to a variable `V`. Calculate another variable `V2` ccontaining a volume larger by 22% than `V`. What is `V2`?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+d <- 12
+h <- 20
+V <- pi * (d/2)^2 * h
+V2 <- V * 1.22
+V2
+```
+
+## Data types in R
+
+### Vectors
+
+The most basic data type in R is a vector. It can be of different types, e.g. numeric, character, logical, etc. There are several ways of creating them, the simplest being by suing the concatenating function `c()`.
+
+**EXERCISE 8:** Create a vector `v` containing numbers 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Assign it to a new variable `mynumbers`. What is the variable type of `mynumbers`? (Hint: check out the `class()` and `mode()` functions.)
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+mynumbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+class(mynumbers)
+```
+
+■
+
+**EXERCISE 9:** Create a vector `v` containing the letters of your first name. Assign it to a new variable `myname`. What is the variable type of `myname`? What is the length of this vector?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+myname <- c("S", "z", "y", "m", "o", "n")
+class(myname)
+length(myname)
+```
+
+■
+
+**EXERCISE 10:** Creating sequences of numbers is made easier by the `:` operator. It can be also achieved via two helper functions: `seq()` and `rep()`. Have a look at these functions, and the, using any method other than typing the numbers manually, create the following vectors (you may or not assign them to new variables):
+
+- a sequence of numbers from 1 to 27
+- a sequence of numbers from 1 to 27 with a step of 2
+- a sequence of numbers from 2 to 8.8, with 17 numbers in the sequence in total (in this sequence - what is the first and last generated element? Assign this sequence to a variable `seq1` and try to extract only its first and last element using the `[]` operator.
+- a sequence of numbers from 1 to 5, repeated 3 times
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+seq(1, 27)
+seq(1, 27, by = 2)
+seq1 <- seq(2, 8.8, length.out = 17)
+seq1
+seq1[1]
+seq1[length(seq1)]
+rep(1:5, 3)
+```
+
+■
+
+
+Vectors can sometimes behave unpredictably when used in arithmetic operations.
+
+**EXERCISE 11:** Create two variables `x <- c(1, 2, 3)` and `y <- c(4, 5, 6)`. Try to add them together. What is the result? What happens if you try to multiply them? What if you try to multiply `x` by 2? Now, create `z <- c(2, 4, 6, 8, 10)` and try adding `x + z`. What is the result?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+x <- c(1, 2, 3)
+y <- c(4, 5, 6)
+x + y
+x * y
+x * 2
+
+z <- c(2, 4, 6, 8, 10)
+x + z
+```
+
+::: {.callout-warning}
+## Problems in R
+What do you think is a difference between `warning` and `error` in R?
+:::
+
+**EXERCISE 12:** Using any of the previosuly created vectors (or having created a new one) explore the following functions designed to manipulate the vector-type variables. What happens if you try to apply them to a vector of characters?
+
+- `sum()`
+- `mean()`
+- `length()`
+- `max()`
+- `min()`
+- `sort()`
+- `prod()`
+- `unique()`
+- `median()`
+- `range()`
+- `quantile()`
+
+■
+
+### Indexing
+
+Elements of a vector (a 1-dimensional data structure) can be accessed via indices, provided using the index operator `[]`. The index can be a single number, a vector of numbers, or a logical vector. Vectors can have named elements, in which case the index can also be a character string.
+
+A built-in vector `LETTERS` contains all the uppercase letters of the English alphabet:
+
+```{r}
+LETTERS
+```
+
+**EXERCISE 13:** Extract, from the full `LETTERS` vector, the following items:
+
+- the first element
+- letters from 5th to 11th
+- letters no. 4, 17, 3, 19 - in this order
+- all letters ithout the 18th one
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+LETTERS[1]
+LETTERS[5:11]
+LETTERS[c(4, 17, 3, 19)]
+LETTERS[-18]
+```
+
+■
+
+**EXERCISE 14:** Create a vector `LETT` containing the first 4 letters of alphabet. Using the `name()` function name them as alfa, beta, gamma, delta. Now, see if you can extract the third one using its name?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+LETT <- LETTERS[1:4]
+names(LETT) <- c("alfa", "beta", "gamma", "delta")
+LETT["gamma"]
+```
+
+■
+
+**EXERCISE 15:** Can a vector contain numbers and characters? What happens if you try to produce a vector with numbers and letters? And what if you try do it with numbers and logicals (`TRUE` and `FALSE`)?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+c(1, 2, "a", "b")
+c(1, 2, TRUE, FALSE)
+```
+
+::: {.callout-tip}
+## Booleans
+
+In R, `TRUE` and `FALSE` are the logical values. They can be used in arithmetic operations, where `TRUE` is treated as 1 and `FALSE` as 0. They can also be used in logical operations, where they can be combined using the `&` (AND), `|` (OR), and `!` (NOT) operators. The `==` operator is used to compare two values, and the `!=` operator is used to check if two values are different. `TRUE` can be abbreviated as `T` and `FALSE` as `F`.
+:::
+
+**EXERCISE 16:** Try forming the following vector: `c(1,2,4,7,NA,NaN,6,Inf)`. Why aren't letters treated as characters?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+c(1,2,4,7,NA,NaN,6,Inf)
+```
+
+■
+
+**EXERCISE 17:** What happens if you try to calculate the mean of the vectopr from Ex 16? What is you fiorst wrap the vector by putting it inside of a `na.omit()` function?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+mean(c(1,2,4,7,NA,NaN,6,Inf))
+mean(na.omit(c(1,2,4,7,NA,NaN,6,Inf)))
+```
+
+::: {.callout-tip}
+## Code indentations
+
+Compare the following two code examples:
+
+```{r}
+#| code-fold: false
+#| eval: false
+
+mean(na.omit(c(1,2,4,7,NA,NaN,6,Inf)))
+```
+
+```{r}
+#| code-fold: false
+#| eval: false
+
+mean(
+  na.omit(
+    c(1,2,4,7,NA,NaN,6,Inf)
+  )
+)
+```
+
+Which one is easier to read?
+:::
+
+■
+
+::: {.callout-tip}
+## Lists
+
+If you want to put together data of different types in R, you can use lists. Lists can be nested (have multiple levels), can contain elements of different types, and can have named elements. Accessing elements of a list is achieved by using names or the `$` operator.
+
+```{r}
+#| code-fold: false
+
+mylist <- list(
+  species = c("blue tit", "great tit"),
+  study_years = c(200, 2001, 2005, 2010),
+  populations = "Gotland"
+)
+
+mylist[[1]]
+mylist[[1]][2]
+mylist$populations
+```
+:::
+
+## External data
+
+### Loading data
+
+External data can be loaded into R from various sources, including Excel spreadsheets, text files (`*.txt`, `*.csv`, etc.) The important thing to consider is to know a few things about your data:
+
+- is it a separated file and if yes - what separates columns (variables)?
+- does the first row contain variable names?
+- what is the decimal separator (R assumes it is `.`)?
+- how do we want to treat any text variables?
+
+In most cases we will use data separated by commas (e.g., CSV file) or Tabs (`\t`).
+
+::: {.callout-warning}
+## CSV
+Polish MS Excel saves CSV files with `;` and not `'` as variable separators! Always make sure you use the correct separating character.
+:::
+
+Loading data to R can be achieved using the `read.table()` function. It's key arguments are `header` (whether the first row contains variable names), `sep` (what is the separating character), and `dec` (what is the decimal separator). Look into the help files of this function - what is the purpose of `stringsAsFactors` argument?
+
+**EXERCISE 18:** Load the `BTdata.csv` file from the `data` folder (you can move it to your working directory). Before doing this, check the file structure. Assign this loaded dataset to a `mydata` variable and check it's class after loading the data. What variable type it is?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+mydata <- read.table(here("data", "BTdata.csv"),
+    header = TRUE,
+    sep = ",",
+    dec = "."
+)
+
+class(mydata)
+```
+
+■
+
+::: {.callout-tip}
+## Saving data tables
+If you have an object containing some dataframe, you can use the `write.table()` function to save it into a text file on your drive.
+:::
+
+### Indexing data tables
+
+Data-frames are actually lists, with list elements being the variables included in the data. You can create a dataframe manually using the `data.frame()` function - usually it is not needed (you will ususally use external data anyway).
+
+**EXERCISE 19:** Knowing a dataframe is a list, extract the variable `tarsus` from it (hint: what operator was used to extract named list elements?)
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+mydata$tarsus
+```
+
+■
+
+Another way of extracting data from dataframes is by providing their indices. Dataframes are 2-dimensional (they have rows - cases and columns - variables). We need 2 indioces to extract data from them. By conventio, we always provide the row index first and then the column index.
+
+**EXERCISE 20:** Extract the value of the `tarsus` variable for the 5th bird in the dataset using 3 different approaches. Also, try extracting cases 4 to 17 from the dataset and save them to new object `subdata`. Is the new object of the same type?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+mydata$tarsus[5]
+mydata[5, "tarsus"]
+mydata[5, 1]
+
+subdata <- mydata[4:17, ]
+class(subdata)
+```
+
+■
+
+**EXERCISE 21:** Generate a summary of your dataset (`summary()`) and check its structure (`str()`). What is the type of variables that were coded as text in the dataset?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+summary(mydata)
+str(mydata)
+```
+
+■
+
+**EXERCISE 22:** Reload the data - now setting `stringsAsFactors = TRUE`. What has changed in the structure of the dataset?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+mydata <- read.table(here("data", "BTdata.csv"),
+    header = TRUE,
+    sep = ",",
+    dec = ".",
+    stringsAsFactors = TRUE
+)
+
+str(mydata)
+```
+
+■
+
+**EXERCISE 23:** By using the `$` operator, create a new variable in the dataset called `tars_mass` and fill it iwth the ration of tarsus length to body mass. Use the `head()` function to verify the new variable was added to the table.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+mydata$tars_mass <- mydata$tarsus / mydata$weight
+head(mydata)
+```
+
+■
+
+**EXERCISE 24:** Explore the work of several helper functions used to manipulate datasets: `names`, `nrow`, `ncol`, `dim`, `colnames`, `rownames`, `head`, `tail`. What happens when you run `View(mydata)`?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+names(mydata)
+nrow(mydata)
+ncol(mydata)
+dim(mydata)
+colnames(mydata)
+rownames(mydata)
+head(mydata)
+tail(mydata)
+```
+
+■
+
+**EXERCISE 25:** The basic types of variables in R are `numeric`, `factor` and `character`. Knowing, that functions beginning with `is.` check if variable is of given type - what would you expect from running `is.factor(mydata$sex)`? What about `is.character(mydata$dam)`? A cmpatible set of functions has names starting with `as.` they can be used to transform different types of variables into each other. What would you expect from running `as.character(mydata$sex)`? And `as.numeric(mydata$sex)`? What code would be used to replace the `dam` variable with its text (character) version?
