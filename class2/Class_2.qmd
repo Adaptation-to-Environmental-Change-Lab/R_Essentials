@@ -1,0 +1,54 @@
+---
+title: Class 2 - data types, daa loading, data manipulation
+author: Szymon Drobniak
+date: '`r Sys.Date()`'
+format:
+    html:
+        toc: true
+        toc-location: left
+        toc-depth: 2
+        theme: simplex
+        embed-resources: true
+        code-fold: true
+        code-tools: true
+        number-sections: true
+        code-block-bg: "#f4f4f4"
+        code-block-border-left: false
+    gfm: default
+crossref:
+    fig-title: Figure
+    tbl-title: Table
+    title-delim: —
+    fig-prefix: Fig.
+    tbl-prefix: Tab.
+    eq-prefix: Eq.
+editor_options:
+    chunk_output_type: console
+execute:
+    cache: true
+    warning: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+library(here)
+```
+
+**In the below instructions...**
+
+**EXERCISE 1:** are bits of code to execute/practice pieces to do, often with only hints on how to perform them.
+
+**Output** indicates the typical output you should expect from a given instruction.
+
+## Data
+
+We will work on a simple dataset on cholesterol levels from patients. The data presents cholesterol concentrations in plasma in patients before diet, and after 4 & 8 weeks of diet containing one of two types of margarine. The age group of patients is also indicated. Data can be downloaded here: https://raw.githubusercontent.com/wbabik/Practical_computing/teaching/Class_10/data/Cholesterol_Age_R.csv
+
+```{r echo = T}
+data_chol <- read.table('https://raw.githubusercontent.com/wbabik/Practical_computing/teaching/Class_10/data/Cholesterol_Age_R.csv',
+                       sep = ';', header = T,
+                       stringsAsFactors = T)
+
+head(data_chol)
+summary(data_chol)
+```
