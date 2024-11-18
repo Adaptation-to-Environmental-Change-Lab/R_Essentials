@@ -27,12 +27,23 @@ editor_options:
 execute:
     cache: true
     warning: false
+    echo: false
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = F)
 library(here)
+format <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 ```
+
+::: {.callout-tip}
+## Before you start...
+
+Make sure you have the following set and ready:
+
+- Folder you want touse as your working directory exists on your HDD
+- Set this folder as working directory (using a menu or `setwd("YOUR_PATH)`)
+- Relevant data (if provided) is in your working directory
+:::
 
 **In the below instructions...**
 
@@ -40,15 +51,17 @@ library(here)
 
 **Output** indicates the typical output you should expect from a given instruction.
 
-## Data
 
-We will work on a simple dataset on cholesterol levels from patients. The data presents cholesterol concentrations in plasma in patients before diet, and after 4 & 8 weeks of diet containing one of two types of margarine. The age group of patients is also indicated. Data can be downloaded here: https://raw.githubusercontent.com/wbabik/Practical_computing/teaching/Class_10/data/Cholesterol_Age_R.csv
 
-```{r echo = T}
-data_chol <- read.table('https://raw.githubusercontent.com/wbabik/Practical_computing/teaching/Class_10/data/Cholesterol_Age_R.csv',
-                       sep = ';', header = T,
-                       stringsAsFactors = T)
+## Paths in R
 
-head(data_chol)
-summary(data_chol)
+Paths in R can be relative or absolute. For example, in my environment my current working directory is 
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+
+getwd()
 ```
+
+Which is very long and hard to rememeber/type in. However, once set I can refer to files in this folder using *relative* paths (skipping the part leading TO the root directory). E.g. for the `class2` folder I can just write `"class2"` or `"./class2"`.
