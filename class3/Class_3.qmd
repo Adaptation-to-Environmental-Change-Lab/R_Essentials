@@ -1,0 +1,418 @@
+---
+title: Class 3 - data types, daa loading, data manipulation
+author: Szymon Drobniak
+date: '`r Sys.Date()`'
+format:
+    html:
+        toc: true
+        toc-location: left
+        toc-depth: 3
+        theme: simplex
+        embed-resources: true
+        code-fold: true
+        code-tools: true
+        number-sections: true
+        code-block-bg: "#f4f4f4"
+        code-block-border-left: false
+    gfm: default
+crossref:
+    fig-title: Figure
+    tbl-title: Table
+    title-delim: —
+    fig-prefix: Fig.
+    tbl-prefix: Tab.
+    eq-prefix: Eq.
+editor_options:
+    chunk_output_type: console
+execute:
+    cache: false
+    warning: false
+---
+
+```{r setup, include=FALSE}
+library(here)
+format <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+```
+
+::: {.callout-tip}
+## Before you start...
+
+Make sure you have the following set and ready:
+
+- Folder you want touse as your working directory exists on your HDD
+- Set this folder as working directory (using a menu or `setwd("YOUR_PATH)`)
+- Relevant data (if provided) is in your working directory
+:::
+
+**In the below instructions...**
+
+**EXERCISE X:** are bits of code to execute/practice pieces to do, often with only hints on how to perform them.
+
+**Output** indicates the typical output you should expect from a given instruction.
+
+
+
+## Data wrangling in R using built-in methods
+
+### Filtering
+
+Instead of using numerical indices, you can use logical expressions to set conditions on data structures in R. To make use of them, you need to understand, that applying a logical operator to a list of data values results in a list of `TRUE` and `FALSE` values. They can be used themselves as indices to subset data.
+
+::: {.callout-note}
+## Logical operators
+
+- `==` - equal to
+- `!=` - not equal to
+- `>` - greater than
+- `<` - less than
+- `>=` - greater or equal to
+- `<=` - less or equal to
+- `&` - and
+- `|` - or
+- `!` - not (negation, reverses the logical value)
+:::
+
+```{r}
+#| code-fold: false
+
+toydata <- rpois(20, 5)
+toydata >= 5
+
+toydata[toydata >= 5]
+
+indices <- toydata >= 5
+toydata[indices]
+```
+
+**EXCERCISE 1:** Using the `toydata` vector, display only the even values. Hint: use the modulo operator `%%` to check for evenness.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+
+toydata[toydata %% 2 == 0]
+```
+
+■
+
+Applying these rules to dataframes is straightforward. Let's try several such filterings on the `BTdata` dataset (load it if you haven't done it yet). We want to select rows of data based on specific values of one or more variables. This means we will insert our logicval expressions in the row's (the first) index. To refer to specific variable in your expression, you can use the `$` operator. E.g., `BTdata[BTdata$sex == "Male", ]` will return all rows where the `sex` variable indicates male sex.
+
+```{r}
+#| code-fold: false
+
+BTdata <- read.table(here("data", "BTdata.csv"),
+    header = TRUE,
+    sep = ",",
+    dec = ".",
+    stringsAsFactors = TRUE
+)
+```
+
+
+**EXERCISE 2:** Display all rows of the `BTdata` that fulfill the following conditions:
+
+- All males (`sex`) heavier (`weight`) than 11 grams
+- Birds that bred in parks (`habitat`) that were mother by female no. R187239
+- All females (`sex`) heavier than 10.3 grams, or males specifically with tarsus below 14 mm (`tarsus`), selecting only the first 3 columns of data
+- All birds that hatched in forests (`habitat`) before day 45 or after day 53 (`hatchdate`)
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+
+BTdata[BTdata$sex == "Male" & BTdata$weight > 11, ]
+BTdata[BTdata$habitat == "park" & BTdata$dam == "R187239", ]
+BTdata[(BTdata$sex == "Fem" & BTdata$weight > 10.3) |
+    (BTdata$sex == "Male" & BTdata$tarsus < 14), 1:3]
+BTdata[BTdata$habitat == "forest" &
+    (BTdata$hatchdate < 45 | BTdata$hatchdate > 53), ]
+```
+
+■
+
+Similar result can be achieved by using the `subset()` function - and providing logical expressions as function arguments (`BTdata$` can be omitted).
+
+**EXERCISE 3:** Achieve the same results as in the previous exercise, but using the `subset()` function, for the first two filterings in EXCERCISE 2.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+subset(BTdata, sex == "Male" & weight > 11)
+subset(BTdata, habitat == "park" & dam == "R187239")
+```
+
+■
+
+What is nice about the indexing paradigm, you can use it to do useful things, e.g., to randomply sample rows of data if needed. To do this, you will need the `sample()` function, that is able to randomly pick values from a larger vector, with or without replacement. Have a look at the function's help file to understand how it works.
+
+**EXERCISE 4:** Randomly sample 10 rows from the `BTdata` dataset, with replacement.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+BTdata[
+    sample(1:nrow(BTdata),
+        10,
+        replace = TRUE
+    ),
+]
+```
+
+■
+
+### Missing values
+
+You should be always cautious when filtering out missing values. Have a look at this example dataset:
+
+```{r}
+#| code-fold: false
+
+missingdata <- data.frame(
+    x = c(1, 5, NA, 4, 6, NA, NA, NA),
+    y = c(NA, 2, 7, 4, 8, 4, 9, 6),
+    z = c(1, 2, 3, 4, 5, 6, 7, 8)
+)
+
+missingdata
+```
+
+**EXERCISE 5:** Naively applying the `na.omit()` function can lead to unexpected data loss. Filter out the missing values from the `missingdata` dataset using the `na.omit()` function applied to the whole data. How many rows of observations are left?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+na.omit(missingdata)
+```
+
+■
+
+**EXERCISE 6:** Now, let's assume that variable `x` is not of interest to us. We don;t want to filter out its `NA` values. Filter out the missing values from the `missingdata` dataset, but only for variables `y` and `z`. How many rows of observations are left? Hint: you can use the logical function `is.na()` to check for `NA` values - it is safer than using `==` in this context.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+missingdata[!is.na(missingdata$y) & !is.na(missingdata$z), ]
+```
+
+You could also achieve the same result using `subset()`.
+
+
+## Data wrangling with `tidyverse()`
+
+Manipulating data is an extensive topic, so much that several packages where created to simplify the process. The most widely used philosophy comes from the `tidyverse` dialect of R - it is an ecosystem of functions that provide wrappers to built-in methods and streamline the data manipulation process. The `dplyr` package is one of the most important components of the `tidyverse` - it provides a set of functions that are easy to use and understand.
+
+`dplyr` works through so called *verbs* - functions that perform specific operations on dataframes. Multiple verbs can e used into larger "sentences" - *pipelines* - that are executed sequentially. In a pipeline, the output of one verb is passed to the next one, and so on. This way, you can perform complex operations on dataframes in a very readable way. Subsequent verbs are separated by the `%>%` operator.
+
+::: {.callout-note}
+## Verbs in `dplyr`
+
+- `filter()` - select rows based on conditions
+- `select()` - select columns based on conditions
+- `mutate()` - create new columns based on existing ones
+- `arrange()` - sort rows based on column values
+- `summarise()` - create summary statistics
+- `group_by()` - group data by specific variables
+:::
+
+Before proceeding, make sure you have the `tidyverse` package installed and loaded.
+
+```{r}
+#| code-fold: false
+# install.packages("tidyverse")
+library(tidyverse)
+```
+
+We will be working on the `BTdata` dataset, so make sure it is still loaded.
+
+### `filter()`
+
+**EXERCISE 7:** Using the `filter()` function, display all rows of the `BTdata` that fulfill the following conditions:
+
+- All males (`sex`) heavier (`weight`) than 11 grams
+- Birds that bred in parks (`habitat`) that were mother by females R187239 and R187240
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+filter(BTdata, sex == "Male" & weight > 11)
+filter(BTdata, habitat == "park" & dam %in% c("R187239", "R187932"))
+```
+
+■
+
+Note, that in the examples above I used `filter()` as a typical function. We can however "pipe" the data into the function, in which case we omit the `data` argument in `filter()`. Try to build the filtering again using the `%>%` operator.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+BTdata %>%
+    filter(sex == "Male" & weight > 11)
+
+BTdata %>%
+    filter(habitat == "park" &
+        dam %in% c("R187239", "R187932"))
+```
+
+The pipe operator `%>%` makes it possible to chain several conditions or other verb operations, one after anotr:
+
+```{r}
+#| code-fold: false
+
+BTdata %>%
+    filter(sex == "Male") %>%
+    filter(weight > 11)
+```
+
+You also use to save the outpout of your filtering to an object:
+
+```{r}
+#| code-fold: false
+
+filtered_data <- BTdata %>%
+    filter(sex == "Male") %>%
+    filter(weight > 11)
+```
+
+::: {.callout-tip}
+## Multiple conditions with `AND`
+
+In the `filter()` function, you can join multiple conditions with the `&` operator, or simply separating them with commas. Of course, this does not apply to the `|` operator, which is used for `OR` conditions.
+:::
+
+### `select()`
+
+The `select()` function is used to select columns of interest from a dataframe. You can use it to select columns by name, or by their position in the dataframe. You can also use the `-` operator to exclude columns from the selection.
+
+**EXERCISE 8:** Using the `select()` function, display only the columns `sex`, `weight`, and `tarsus` from the `BTdata` dataset. Join this selection with filtering that displays only individuals heavier than 10.5 grams.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+BTdata %>%
+    filter(weight > 10.5) %>%
+    select(sex, weight, tarsus)
+```
+
+■
+
+Using of `select()` is made easier by additional helpers that allow for selecting columns matching certain name patterns, e.g., `starts_with()`, `ends_with()`, `contains()`, `matches()`, `num_range()`, `one_of()`, `everything()`.
+
+**EXERCISE 9:** In the previous example, instead of the selected columns, pick only those that start with `bill`.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+BTdata %>%
+    filter(weight > 10.5) %>%
+    select(starts_with("bill"))
+```
+
+■
+
+### `arrange()`
+
+The `arrange()` function is used to sort rows of a dataframe based on the values of a specific column. You can sort in ascending or descending order.
+
+**EXERCISE 10:** Using the `arrange()` function, display the `BTdata` dataset sorted by the `weight` column in descending order, selecting only cases belonging to mothers (`dam`): R187239, R187547, and R187292. Tip: yo will need to use the `desc()` helper.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+BTdata %>%
+    filter(dam %in% c("R187239", "R187547", "R187292")) %>%
+    arrange(desc(weight))
+```
+
+■
+
+### `mutate()`
+
+The `mutate()` function is used to create new columns based on existing ones. You can use it to perform calculations on columns, or to create new columns based on logical conditions.
+
+**EXERCISE 11:** Using the `mutate()` function, create a new column in the `BTdata` dataset that will contain the ratio of `weight` to `tarsus` length. Name this column `wt_tarsus_ratio`.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+BTdata <- BTdata %>%
+    mutate(wt_tarsus_ratio = weight / tarsus)
+head(BTdata)
+```
+
+■
+
+**EXERCISE 12:** Using the `mutate()` function and data filtering create a new dataframe with birds that have exceptionally long and narrow bills (i.e., that have the bill length to depth ratio  above 20). Name this dataframe `long_bills`. Display the first rows of this new dataset.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+long_bills <- BTdata %>%
+    mutate(bill_ratio = bill_length / bill_depth) %>%
+    filter(bill_ratio > 20)
+head(long_bills)
+```
+
+### `summarise()` and `group_by()`
+
+The `summarise()` function is used to create summary statistics for groups of data. The `group_by()` function is used to group data by specific variables. On its own, the `summarise()` is not veru useful, it collapses the dataset to few (even single) rows.
+
+```{r}
+#| code-fold: false
+
+BTdata %>%
+    summarise(mean_weight = mean(weight),
+        sd_weight = sd(weight),
+        n = n()
+    )
+```
+
+Note: I've used the helper function `n()` which can be applied to return the number of rows in a given set of data being summarized.
+
+However, we can group the data by ceretain variables. On its own, groupin does not alter the data structure - but it adds an attribute, that can be used by `summarise()` to perform summaries in groups instead of the whole dataset.\
+
+**EXERCISE 13:** Using the `group_by()` and `summarise()` functions, calculate the mean and SD of `weight` for each breeding female (`dam`) in the `BTdata` dataset. Also, add another variable displaying the number of cases for each female. At the end, display only the first 6 rows of the summary.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+BTdata %>%
+    group_by(dam) %>%
+    summarise(mean_weight = mean(weight),
+        sd_weight = sd(weight),
+        n = n()
+    ) %>%
+    head(6)
+```
+
+Do you see anything "odd" in this dataframe rendering in your console (in the way it is displayed)?
+
+
+## Putting it all together - a simple wrangling project

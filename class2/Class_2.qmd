@@ -499,6 +499,8 @@ subdata <- mydata[4:17, ]
 class(subdata)
 ```
 
+Try pulling out one column (e.g., the second) and one row (e.g., the second) from the dataset. Which of the two is a vector? Why one IS a vector and the other isn't?
+
 ■
 
 **EXERCISE 21:** Generate a summary of your dataset (`summary()`) and check its structure (`str()`). What is the type of variables that were coded as text in the dataset?
