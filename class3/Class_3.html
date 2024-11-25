@@ -2622,7 +2622,7 @@ vertical-align: -.125em;
   <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="toc-section-number">2.4</span>  <code>mutate()</code></a></li>
   <li><a href="#summarise-and-group_by" id="toc-summarise-and-group_by" class="nav-link" data-scroll-target="#summarise-and-group_by"><span class="toc-section-number">2.5</span>  <code>summarise()</code> and <code>group_by()</code></a></li>
   </ul></li>
-  <li><a href="#putting-it-all-together---a-simple-wrangling-project" id="toc-putting-it-all-together---a-simple-wrangling-project" class="nav-link" data-scroll-target="#putting-it-all-together---a-simple-wrangling-project"><span class="toc-section-number">3</span>  Putting it all together - a simple wrangling project</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="toc-section-number">3</span>  Putting it all together</a></li>
   </ul>
 </nav>
 </div>
@@ -2712,17 +2712,17 @@ Logical operators
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>toydata <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">20</span>, <span class="dv">5</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
-[13]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
+<pre><code> [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE
+[13]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">&gt;=</span> <span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 5 5 7 9 5 7 5 7 5 5 8</code></pre>
+<pre><code>[1] 7 6 6 9 7 6 6 8 5</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>indices <span class="ot">&lt;-</span> toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>toydata[indices]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 5 5 7 9 5 7 5 7 5 5 8</code></pre>
+<pre><code>[1] 7 6 6 9 7 6 6 8 5</code></pre>
 </div>
 </div>
 <p><strong>EXCERCISE 1:</strong> Using the <code>toydata</code> vector, display only the even values. Hint: use the modulo operator <code>%%</code> to check for evenness.</p>
@@ -2733,7 +2733,7 @@ Logical operators
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 4 4 4 4 8 4</code></pre>
+<pre><code> [1] 6 2 6 2 2 4 4 6 6 4 8 4</code></pre>
 </div>
 </div>
 <p>■</p>
@@ -2935,27 +2935,27 @@ Logical operators
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    tarsus     back     dam fosternest hatchdate  sex weight habitat
-106  15.07 549.2534 R187571      C2602        47 Male    9.9    park
-164  14.69 549.3712 R187957       G702        51  Fem   10.0    park
-316  15.45 550.6196 R187521      E2002        46 Male   10.4    park
-52   14.61 549.3029 R187958      B1302        51 Male    9.7    park
-194  14.77 549.9052 R187945      C2302        49 Male    9.8    park
-488  14.54 551.6054 R187517      C2202        44  Fem    9.3    park
-723  14.92 549.9099 R187957      H1802        51  Fem   10.2    park
-665  15.37 547.3901 R187000      B1402        52 Male   10.0  forest
-10   14.46 549.8523 R187523      B2202        46  Fem    9.6  forest
-444  14.46 548.6321 R187948      E1702        51  Fem    9.7    park
+326  14.69 549.6558 R187961       E802        52 Male    9.8    park
+86   14.39 550.7976 R187535       G102        47  Fem    9.9    park
+656  14.69 550.3631 R187398       C602        44 Male    9.8  forest
+776  14.01 550.7592 R187516       D102        45  Fem    9.4    park
+377  14.77 550.4304 R187518      A2602        45 Male    9.9  forest
+762  14.54 550.0785 R187947      B1202        51  Fem    9.8    park
+577  14.77 551.0871 R187953      B1302        51  Fem   10.2    park
+413  15.07 552.0841 R187553      H3202        48 Male   10.4    park
+210  13.55 549.6995 R187902      B1102        54  UNK    9.0  forest
+462  14.08 549.0427 R187916      G1602        49  Fem    9.8    park
     bill_length bill_depth
-106      12.007      0.669
-164      11.770      0.645
-316      12.345      0.624
-52       11.675      0.615
-194      11.807      0.663
-488      11.605      0.666
-723      11.942      0.617
-665      12.312      0.682
-10       11.564      0.609
-444      11.538      0.617</code></pre>
+326      11.767      0.645
+86       11.530      0.621
+656      11.719      0.679
+776      11.229      0.588
+377      11.783      0.694
+762      11.610      0.613
+577      11.820      0.643
+413      12.054      0.653
+210      10.850      0.577
+462      11.309      0.616</code></pre>
 </div>
 </div>
 <p>■</p>
@@ -3424,8 +3424,8 @@ Multiple conditions with <code>AND</code>
 <p>Do you see anything “odd” in this dataframe rendering in your console (in the way it is displayed)?</p>
 </section>
 </section>
-<section id="putting-it-all-together---a-simple-wrangling-project" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="putting-it-all-together---a-simple-wrangling-project"><span class="header-section-number">3</span> Putting it all together - a simple wrangling project</h2>
+<section id="putting-it-all-together" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">3</span> Putting it all together</h2>
 <p>We will now see the different data wrangling possibilities in action, using a real-life data example. The data comes in two files: <code>bt_mb.csv</code> contains microbiome data of blue tit individuals (their IDs are in the first column); for each individual, we have a list of bacterial taxa (OTUs) listed as subsequent columns - in each, the value indicates how many reads (occurences) of a given taxon were identified in the sample. Second file (<code>bt_meta.csv</code>) contains additional data on each individual (their sex, habitat type, year of study, data of sequencing, age and individual ID). the data should be prepared in the following way:</p>
 <ul>
 <li>microbiome data should be changed from wide format to long format (where wthere is a column for sample ID, a column for bacterial taxon, and the columns with 0 or 1 indicating the presence/absence of each taxon); thios database sholud contain only cases, where the number of readswas greater than 2</li>
@@ -4157,7 +4157,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb62-457"><a href="#cb62-457" aria-hidden="true" tabindex="-1"></a>Do you see anything &quot;odd&quot; in this dataframe rendering in your console (in the way it is displayed)?</span>
 <span id="cb62-458"><a href="#cb62-458" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-459"><a href="#cb62-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-460"><a href="#cb62-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Putting it all together - a simple wrangling project</span></span>
+<span id="cb62-460"><a href="#cb62-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Putting it all together</span></span>
 <span id="cb62-461"><a href="#cb62-461" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-462"><a href="#cb62-462" aria-hidden="true" tabindex="-1"></a>We will now see the different data wrangling possibilities in action, using a real-life data example. The data comes in two files: <span class="in">`bt_mb.csv`</span> contains microbiome data of blue tit individuals (their IDs are in the first column); for each individual, we have a list of bacterial taxa (OTUs) listed as subsequent columns - in each, the value indicates how many reads (occurences) of a given taxon were identified in the sample. Second file (<span class="in">`bt_meta.csv`</span>) contains additional data on each individual (their sex, habitat type, year of study, data of sequencing, age and individual ID). the data should be prepared in the following way:</span>
 <span id="cb62-463"><a href="#cb62-463" aria-hidden="true" tabindex="-1"></a></span>

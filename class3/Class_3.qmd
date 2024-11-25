@@ -415,7 +415,7 @@ BTdata %>%
 Do you see anything "odd" in this dataframe rendering in your console (in the way it is displayed)?
 
 
-## Putting it all together - a simple wrangling project
+## Putting it all together
 
 We will now see the different data wrangling possibilities in action, using a real-life data example. The data comes in two files: `bt_mb.csv` contains microbiome data of blue tit individuals (their IDs are in the first column); for each individual, we have a list of bacterial taxa (OTUs) listed as subsequent columns - in each, the value indicates how many reads (occurences) of a given taxon were identified in the sample. Second file (`bt_meta.csv`) contains additional data on each individual (their sex, habitat type, year of study, data of sequencing, age and individual ID). the data should be prepared in the following way:
 

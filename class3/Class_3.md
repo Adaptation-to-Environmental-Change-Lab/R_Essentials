@@ -55,28 +55,28 @@ toydata <- rpois(20, 5)
 toydata >= 5
 ```
 
-     [1]  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE
-    [13] FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
+     [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+    [13] FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE
 
 ``` r
 toydata[toydata >= 5]
 ```
 
-     [1]  5  6  7  6 10 10  9  6  6  8  5  5
+     [1] 7 6 6 6 5 6 6 6 5 5 6
 
 ``` r
 indices <- toydata >= 5
 toydata[indices]
 ```
 
-     [1]  5  6  7  6 10 10  9  6  6  8  5  5
+     [1] 7 6 6 6 5 6 6 6 5 5 6
 
 **EXCERCISE 1:** Using the `toydata` vector, display only the even
 values. Hint: use the modulo operator `%%` to check for evenness.
 
 **Output**
 
-     [1]  4  6  4  6 10 10  4  2  6  6  8  2  2
+     [1] 6 6 6 4 4 6 4 4 6 6 6
 
 ■
 
@@ -263,27 +263,27 @@ replacement.
 **Output**
 
         tarsus     back     dam fosternest hatchdate  sex weight habitat
-    772  14.24 549.6942 R187547       D802        48  Fem    9.4  forest
-    794  15.60 550.4936 R187155      F2402        47 Male   11.2    park
-    653  14.92 547.9671 R187517      C2202        44 Male    9.8    park
-    340  14.61 549.7695 R187513      G1902        47 Male   10.0    park
-    508  14.95 551.9390 R187540       D602        45  Fem   10.0  forest
-    706  13.63 549.5441 R187931      G2202        49  Fem    9.4  forest
-    475  13.93 551.3338 R187539       A302        47  Fem    9.6  forest
-    242  14.99 548.6298 R187531      F1702        46 Male   10.0  forest
-    531  13.78 549.4879 R187931      G2202        49  Fem    9.0    park
-    190  14.08 552.7623 R187528      A2602        45  Fem    9.4  forest
+    182  14.61 549.2631 R187518      A1302        45 Male    9.9    park
+    674  14.61 549.4641 R187548      D1202        48 Male    9.8    park
+    722  14.92 549.7544 R186917      H2502        55 Male   10.1    park
+    655  14.61 551.9284 R187531      C1302        46  Fem    9.7  forest
+    219  14.46 551.7164 R187546       D902        47  UNK    9.6    park
+    200  14.16 548.3299 R186907       C102        53  Fem    9.8    park
+    425  14.16 550.6645 R187569     A22B02        48 Male    9.7  forest
+    450  14.08 550.0436 R187588       E702        47  Fem    9.7  forest
+    605  13.86 550.1148 R188000      F2702        51 Male    9.3    park
+    429  13.78 550.7965 R187595      C2402        48 Male    9.4  forest
         bill_length bill_depth
-    772      11.422      0.597
-    794      12.477      0.696
-    653      11.912      0.688
-    340      11.721      0.699
-    508      11.957      0.652
-    706      10.907      0.627
-    475      11.089      0.626
-    242      11.957      0.664
-    531      11.008      0.647
-    190      11.261      0.603
+    182      11.627      0.632
+    674      11.661      0.609
+    722      11.933      0.640
+    655      11.713      0.630
+    219      11.551      0.639
+    200      11.313      0.662
+    425      11.318      0.559
+    450      11.305      0.630
+    605      11.074      0.578
+    429      11.066      0.619
 
 ■
 
@@ -737,7 +737,7 @@ rows of the summary.
 Do you see anything “odd” in this dataframe rendering in your console
 (in the way it is displayed)?
 
-## Putting it all together - a simple wrangling project
+## Putting it all together
 
 We will now see the different data wrangling possibilities in action,
 using a real-life data example. The data comes in two files: `bt_mb.csv`
