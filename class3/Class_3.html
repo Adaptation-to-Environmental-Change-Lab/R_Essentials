@@ -2622,6 +2622,7 @@ vertical-align: -.125em;
   <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="toc-section-number">2.4</span>  <code>mutate()</code></a></li>
   <li><a href="#summarise-and-group_by" id="toc-summarise-and-group_by" class="nav-link" data-scroll-target="#summarise-and-group_by"><span class="toc-section-number">2.5</span>  <code>summarise()</code> and <code>group_by()</code></a></li>
   </ul></li>
+  <li><a href="#putting-it-all-together---a-simple-wrangling-project" id="toc-putting-it-all-together---a-simple-wrangling-project" class="nav-link" data-scroll-target="#putting-it-all-together---a-simple-wrangling-project"><span class="toc-section-number">3</span>  Putting it all together - a simple wrangling project</a></li>
   </ul>
 </nav>
 </div>
@@ -2711,17 +2712,17 @@ Logical operators
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>toydata <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">20</span>, <span class="dv">5</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
-[13] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE</code></pre>
+<pre><code> [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
+[13]  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">&gt;=</span> <span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5 5 5 7 8 6 7 5</code></pre>
+<pre><code> [1] 8 6 7 8 5 6 8 6 7 8 5 7</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>indices <span class="ot">&lt;-</span> toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>toydata[indices]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5 5 5 7 8 6 7 5</code></pre>
+<pre><code> [1] 8 6 7 8 5 6 8 6 7 8 5 7</code></pre>
 </div>
 </div>
 <p><strong>EXCERCISE 1:</strong> Using the <code>toydata</code> vector, display only the even values. Hint: use the modulo operator <code>%%</code> to check for evenness.</p>
@@ -2732,7 +2733,7 @@ Logical operators
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 2 4 2 4 2 2 2 8 6 4</code></pre>
+<pre><code> [1] 8 2 6 8 6 8 4 6 8 4</code></pre>
 </div>
 </div>
 <p>■</p>
@@ -2934,27 +2935,27 @@ Logical operators
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    tarsus     back     dam fosternest hatchdate  sex weight habitat
-366  14.54 549.9240 R187926       G402        49 Male    9.8  forest
-453  15.07 548.3336 R187155      F2402        47 Male    9.9  forest
-241  14.69 548.5143 R187559      F1902        47  Fem    9.7    park
-214  14.46 549.9420 R187547       B202        48  Fem   10.0    park
-358  14.92 549.6806 R187009       H102        46 Male   10.0  forest
-815  14.39 549.2532 R187515      H3602        45  Fem    9.8  forest
-411  14.46 549.4381 R187926       G402        49 Male   10.0    park
-558  14.39 550.1059    Fem2     A18B02        53 Male    9.5  forest
-757  13.71 550.3453 R187942      B1802        50 Male    9.3    park
-636  14.54 549.0955 R187539       A302        47  Fem    9.6  forest
+538  14.16 549.9779 R187086       G102        47  Fem    9.3    park
+617  14.16 548.9944 R187573      G1902        47  Fem    9.7    park
+158  14.61 550.2864    Fem5       F202        50  Fem    9.8  forest
+201  15.07 552.2280 R187541      B2502        47 Male   10.4  forest
+378  14.54 550.2464 R187517      C2202        44 Male    9.8  forest
+208  14.24 552.2855 R187958      B1302        51  Fem    9.3  forest
+443  14.61 547.3529 R187516       D102        45  Fem   10.0    park
+136  15.52 551.7863 R187590       D202        49 Male   10.5  forest
+532  14.46 548.8733 R187573      G1902        47 Male    9.9  forest
+92   14.54 548.4885 R187086       H502        47 Male    9.8  forest
     bill_length bill_depth
-366      11.668      0.713
-453      12.035      0.702
-241      11.715      0.713
-214      11.570      0.612
-358      11.937      0.648
-815      11.496      0.647
-411      11.596      0.664
-558      11.549      0.634
-757      10.959      0.578
-636      11.650      0.600</code></pre>
+538      11.330      0.680
+617      11.318      0.606
+158      11.689      0.650
+201      12.043      0.682
+378      11.644      0.654
+208      11.379      0.606
+443      11.765      0.603
+136      12.394      0.725
+532      11.525      0.639
+92       11.628      0.604</code></pre>
 </div>
 </div>
 <p>■</p>
@@ -3421,10 +3422,12 @@ Multiple conditions with <code>AND</code>
 </div>
 </div>
 <p>Do you see anything “odd” in this dataframe rendering in your console (in the way it is displayed)?</p>
-<p>■</p>
+</section>
+</section>
+<section id="putting-it-all-together---a-simple-wrangling-project" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="putting-it-all-together---a-simple-wrangling-project"><span class="header-section-number">3</span> Putting it all together - a simple wrangling project</h2>
 <!-- -->
 
-</section>
 </section>
 
 </main>
@@ -4029,8 +4032,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb56-456"><a href="#cb56-456" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-457"><a href="#cb56-457" aria-hidden="true" tabindex="-1"></a>Do you see anything &quot;odd&quot; in this dataframe rendering in your console (in the way it is displayed)?</span>
 <span id="cb56-458"><a href="#cb56-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-459"><a href="#cb56-459" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-460"><a href="#cb56-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-459"><a href="#cb56-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-460"><a href="#cb56-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Putting it all together - a simple wrangling project</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
