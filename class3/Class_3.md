@@ -55,28 +55,28 @@ toydata <- rpois(20, 5)
 toydata >= 5
 ```
 
-     [1]  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
-    [13]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
+     [1]  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE
+    [13] FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
 
 ``` r
 toydata[toydata >= 5]
 ```
 
-     [1]  7  8  6  5  8 10  9 12  7  8  7  5
+     [1]  5  6  7  6 10 10  9  6  6  8  5  5
 
 ``` r
 indices <- toydata >= 5
 toydata[indices]
 ```
 
-     [1]  7  8  6  5  8 10  9 12  7  8  7  5
+     [1]  5  6  7  6 10 10  9  6  6  8  5  5
 
 **EXCERCISE 1:** Using the `toydata` vector, display only the even
 values. Hint: use the modulo operator `%%` to check for evenness.
 
 **Output**
 
-     [1]  2  8  6  4  8 10 12  4  2  8  4  4
+     [1]  4  6  4  6 10 10  4  2  6  6  8  2  2
 
 ■
 
@@ -263,27 +263,27 @@ replacement.
 **Output**
 
         tarsus     back     dam fosternest hatchdate  sex weight habitat
-    611  15.37 550.5153 R187964      F1502        53 Male   10.3    park
-    759  14.54 549.2492 R187824      B1602        53  Fem    9.8  forest
-    523  15.30 550.4137 R187155      F2402        47 Male   10.3  forest
-    805  14.16 547.3189 R186902      G1802        52 Male    9.7  forest
-    740  14.24 552.3785 P322402      A2202        45 Male    9.7  forest
-    227  14.77 550.5998 R188000      E1702        51  Fem    9.9    park
-    295  14.69 552.7701 R187942      B1902        50 Male   10.0    park
-    102  13.71 551.4740 R187512      A2202        45  Fem    9.1  forest
-    575  14.84 550.1890 R186908      B1702        53  Fem   10.2    park
-    187  13.86 550.2283 R187343     A22B02        48 Male    9.3  forest
+    772  14.24 549.6942 R187547       D802        48  Fem    9.4  forest
+    794  15.60 550.4936 R187155      F2402        47 Male   11.2    park
+    653  14.92 547.9671 R187517      C2202        44 Male    9.8    park
+    340  14.61 549.7695 R187513      G1902        47 Male   10.0    park
+    508  14.95 551.9390 R187540       D602        45  Fem   10.0  forest
+    706  13.63 549.5441 R187931      G2202        49  Fem    9.4  forest
+    475  13.93 551.3338 R187539       A302        47  Fem    9.6  forest
+    242  14.99 548.6298 R187531      F1702        46 Male   10.0  forest
+    531  13.78 549.4879 R187931      G2202        49  Fem    9.0    park
+    190  14.08 552.7623 R187528      A2602        45  Fem    9.4  forest
         bill_length bill_depth
-    611      12.363      0.709
-    759      11.595      0.628
-    523      12.248      0.724
-    805      11.322      0.619
-    740      11.376      0.590
-    227      11.797      0.649
-    295      11.768      0.637
-    102      10.975      0.610
-    575      11.866      0.678
-    187      11.110      0.577
+    772      11.422      0.597
+    794      12.477      0.696
+    653      11.912      0.688
+    340      11.721      0.699
+    508      11.957      0.652
+    706      10.907      0.627
+    475      11.089      0.626
+    242      11.957      0.664
+    531      11.008      0.647
+    190      11.261      0.603
 
 ■
 
@@ -854,7 +854,9 @@ individual ID). the data should be prepared in the following way:
 >     X2 = LETTERS[1:5]
 > )
 >
-> toydata_joined <- left_join(toydata_long, toydata_meta, by = c("ID" = "Individual_ID"))
+> toydata_joined <- left_join(toydata_long, toydata_meta,
+>     by = c("ID" = "Individual_ID")
+> )
 > toydata_joined
 > ```
 >

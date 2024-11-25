@@ -482,7 +482,9 @@ toydata_meta <- data.frame(
     X2 = LETTERS[1:5]
 )
 
-toydata_joined <- left_join(toydata_long, toydata_meta, by = c("ID" = "Individual_ID"))
+toydata_joined <- left_join(toydata_long, toydata_meta,
+    by = c("ID" = "Individual_ID")
+)
 toydata_joined
 ```
 
