@@ -2712,17 +2712,17 @@ Logical operators
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>toydata <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">20</span>, <span class="dv">5</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
-[13]  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE</code></pre>
+<pre><code> [1]  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE
+[13]  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">&gt;=</span> <span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 8 6 7 8 5 6 8 6 7 8 5 7</code></pre>
+<pre><code> [1]  6  9  6  7  5  6  5 10  5 10  7 10  5</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>indices <span class="ot">&lt;-</span> toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>toydata[indices]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 8 6 7 8 5 6 8 6 7 8 5 7</code></pre>
+<pre><code> [1]  6  9  6  7  5  6  5 10  5 10  7 10  5</code></pre>
 </div>
 </div>
 <p><strong>EXCERCISE 1:</strong> Using the <code>toydata</code> vector, display only the even values. Hint: use the modulo operator <code>%%</code> to check for evenness.</p>
@@ -2733,7 +2733,7 @@ Logical operators
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 8 2 6 8 6 8 4 6 8 4</code></pre>
+<pre><code> [1]  6  6  4  4  0  6 10 10  2 10</code></pre>
 </div>
 </div>
 <p>■</p>
@@ -2935,27 +2935,27 @@ Logical operators
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    tarsus     back     dam fosternest hatchdate  sex weight habitat
-538  14.16 549.9779 R187086       G102        47  Fem    9.3    park
-617  14.16 548.9944 R187573      G1902        47  Fem    9.7    park
-158  14.61 550.2864    Fem5       F202        50  Fem    9.8  forest
-201  15.07 552.2280 R187541      B2502        47 Male   10.4  forest
-378  14.54 550.2464 R187517      C2202        44 Male    9.8  forest
-208  14.24 552.2855 R187958      B1302        51  Fem    9.3  forest
-443  14.61 547.3529 R187516       D102        45  Fem   10.0    park
-136  15.52 551.7863 R187590       D202        49 Male   10.5  forest
-532  14.46 548.8733 R187573      G1902        47 Male    9.9  forest
-92   14.54 548.4885 R187086       H502        47 Male    9.8  forest
+117  14.84 550.6912 R187927      B2102        50 Male   10.2  forest
+618  13.93 548.9384 R186902      G1802        52  Fem    9.4  forest
+653  14.92 547.9671 R187517      C2202        44 Male    9.8    park
+54   13.93 551.5280 R187932       B502        49 Male    9.4  forest
+613  15.07 549.2669 R187592       F902        47 Male    9.8    park
+503  14.46 551.6034 R187590       B502        49 Male    9.9    park
+821  13.33 550.3301 R186917      H2502        55  Fem    9.2  forest
+52   14.61 549.3029 R187958      B1302        51 Male    9.7    park
+740  14.24 552.3785 P322402      A2202        45 Male    9.7  forest
+61   15.22 551.8520 R187590       D202        49 Male    9.7    park
     bill_length bill_depth
-538      11.330      0.680
-617      11.318      0.606
-158      11.689      0.650
-201      12.043      0.682
-378      11.644      0.654
-208      11.379      0.606
-443      11.765      0.603
-136      12.394      0.725
-532      11.525      0.639
-92       11.628      0.604</code></pre>
+117      11.854      0.672
+618      11.154      0.635
+653      11.912      0.688
+54       11.180      0.590
+613      12.098      0.671
+503      11.553      0.675
+821      10.717      0.555
+52       11.675      0.615
+740      11.376      0.590
+61       12.150      0.607</code></pre>
 </div>
 </div>
 <p>■</p>
@@ -3426,6 +3426,84 @@ Multiple conditions with <code>AND</code>
 </section>
 <section id="putting-it-all-together---a-simple-wrangling-project" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="putting-it-all-together---a-simple-wrangling-project"><span class="header-section-number">3</span> Putting it all together - a simple wrangling project</h2>
+<p>We will now see the different data wrangling possibilities in action, using a real-life data example. The data comes in two files: <code>bt_mb.csv</code> contains microbiome data of blue tit individuals (their IDs are in the first column); for each individual, we have a list of bacterial taxa (OTUs) listed as subsequent columns - in each, the value indicates how many reads (occurences) of a given taxon were identified in the sample. Second file (<code>bt_meta.csv</code>) contains additional data on each individual (their sex, habitat type, year of study, data of sequencing, age and individual ID). the data should be prepared in the following way:</p>
+<ul>
+<li>microbiome data should be changed from wide format to long format (where wthere is a column for sample ID, a column for bacterial taxon, and the columns with 0 or 1 indicating the presence/absence of each taxon); thios database sholud contain only cases, where the number of readswas greater than 2</li>
+<li>this new table should be summarised by counting the number of present baterial taxa for each sample ID</li>
+<li>finally, summary data should be merged with the individual meta-data: sex, habitat, bird ID and age</li>
+</ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Long vs. wide format
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wide format data contains values belonging to one variable in several olumn categories. Let’s create an example of such data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>toydata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>),</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">V1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">V2 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">V3 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>toydata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID V1 V2 V3
+1  A  1  0  1
+2  B  0  1  1
+3  C  1  1  0
+4  D  0  0  1
+5  E  1  0  0</code></pre>
+</div>
+</div>
+<p>We want the data in a format, where each row contains a single observation, and each variable is in a separate column. Here, we would need a column for <code>ID</code> and a column for <code>V</code> containing the <code>V1-V3</code> identifiers, plus a <code>value</code> column containing the values of the <code>V.</code> variables. The <code>dplyr</code> functions allow us to transform between the two types of data display easily:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>toydata_long <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>ID,</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_to =</span> <span class="st">&quot;V&quot;</span>,</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative formulation listing columns explicitly</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>toydata_long <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;V1&quot;</span>, <span class="st">&quot;V2&quot;</span>, <span class="st">&quot;V3&quot;</span>),</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_to =</span> <span class="st">&quot;V&quot;</span>,</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="co"># one can also use starts_with(V)</span></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>toydata_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 3
+   ID    V     value
+   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+ 1 A     V1        1
+ 2 A     V2        0
+ 3 A     V3        1
+ 4 B     V1        0
+ 5 B     V2        1
+ 6 B     V3        1
+ 7 C     V1        1
+ 8 C     V2        1
+ 9 C     V3        0
+10 D     V1        0
+11 D     V2        0
+12 D     V3        1
+13 E     V1        1
+14 E     V2        0
+15 E     V3        0</code></pre>
+</div>
+</div>
+<p>Of course, there’s an analogous function <code>pivot_wider()</code> that does the opposite operation. However, the longer format is usually much more useful and recommended.</p>
+</div>
+</div>
 <!-- -->
 
 </section>
@@ -3616,424 +3694,475 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb56" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Class 3 - data types, daa loading, data manipulation</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> Szymon Drobniak</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> &#39;`r Sys.Date()`&#39;</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co">    html:</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co">        toc: true</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co">        toc-location: left</span></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co">        toc-depth: 3</span></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="co">        theme: simplex</span></span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co">        embed-resources: true</span></span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co">        code-fold: true</span></span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="co">        code-tools: true</span></span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="co">        number-sections: true</span></span>
-<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="co">        code-block-bg: &quot;#f4f4f4&quot;</span></span>
-<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="co">        code-block-border-left: false</span></span>
-<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="co">    gfm: default</span></span>
-<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a><span class="an">crossref:</span></span>
-<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-title: Figure</span></span>
-<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a><span class="co">    tbl-title: Table</span></span>
-<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a><span class="co">    title-delim: —</span></span>
-<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-prefix: Fig.</span></span>
-<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a><span class="co">    tbl-prefix: Tab.</span></span>
-<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a><span class="co">    eq-prefix: Eq.</span></span>
-<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span></span>
-<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a><span class="co">    chunk_output_type: console</span></span>
-<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a><span class="co">    cache: false</span></span>
-<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
-<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb56-34"><a href="#cb56-34" aria-hidden="true" tabindex="-1"></a>format <span class="ot">&lt;-</span> knitr<span class="sc">::</span>opts_knit<span class="sc">$</span><span class="fu">get</span>(<span class="st">&quot;rmarkdown.pandoc.to&quot;</span>)</span>
-<span id="cb56-35"><a href="#cb56-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-36"><a href="#cb56-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-37"><a href="#cb56-37" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb56-38"><a href="#cb56-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Before you start...</span></span>
-<span id="cb56-39"><a href="#cb56-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-40"><a href="#cb56-40" aria-hidden="true" tabindex="-1"></a>Make sure you have the following set and ready:</span>
-<span id="cb56-41"><a href="#cb56-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-42"><a href="#cb56-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Folder you want touse as your working directory exists on your HDD</span>
-<span id="cb56-43"><a href="#cb56-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set this folder as working directory (using a menu or <span class="in">`setwd(&quot;YOUR_PATH)`</span>)</span>
-<span id="cb56-44"><a href="#cb56-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Relevant data (if provided) is in your working directory</span>
-<span id="cb56-45"><a href="#cb56-45" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-46"><a href="#cb56-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-47"><a href="#cb56-47" aria-hidden="true" tabindex="-1"></a>**In the below instructions...**</span>
-<span id="cb56-48"><a href="#cb56-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-49"><a href="#cb56-49" aria-hidden="true" tabindex="-1"></a>**EXERCISE X:** are bits of code to execute/practice pieces to do, often with only hints on how to perform them.</span>
-<span id="cb56-50"><a href="#cb56-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-51"><a href="#cb56-51" aria-hidden="true" tabindex="-1"></a>**Output** indicates the typical output you should expect from a given instruction.</span>
-<span id="cb56-52"><a href="#cb56-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-53"><a href="#cb56-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-54"><a href="#cb56-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-55"><a href="#cb56-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data wrangling in R using built-in methods</span></span>
-<span id="cb56-56"><a href="#cb56-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-57"><a href="#cb56-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Filtering</span></span>
-<span id="cb56-58"><a href="#cb56-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-59"><a href="#cb56-59" aria-hidden="true" tabindex="-1"></a>Instead of using numerical indices, you can use logical expressions to set conditions on data structures in R. To make use of them, you need to understand, that applying a logical operator to a list of data values results in a list of <span class="in">`TRUE`</span> and <span class="in">`FALSE`</span> values. They can be used themselves as indices to subset data.</span>
-<span id="cb56-60"><a href="#cb56-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-61"><a href="#cb56-61" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb56-62"><a href="#cb56-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logical operators</span></span>
-<span id="cb56-63"><a href="#cb56-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-64"><a href="#cb56-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`==`</span> - equal to</span>
-<span id="cb56-65"><a href="#cb56-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`!=`</span> - not equal to</span>
-<span id="cb56-66"><a href="#cb56-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&gt;`</span> - greater than</span>
-<span id="cb56-67"><a href="#cb56-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&lt;`</span> - less than</span>
-<span id="cb56-68"><a href="#cb56-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&gt;=`</span> - greater or equal to</span>
-<span id="cb56-69"><a href="#cb56-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&lt;=`</span> - less or equal to</span>
-<span id="cb56-70"><a href="#cb56-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&amp;`</span> - and</span>
-<span id="cb56-71"><a href="#cb56-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`|`</span> - or</span>
-<span id="cb56-72"><a href="#cb56-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`!`</span> - not (negation, reverses the logical value)</span>
-<span id="cb56-73"><a href="#cb56-73" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-74"><a href="#cb56-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-77"><a href="#cb56-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-78"><a href="#cb56-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb56-79"><a href="#cb56-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-80"><a href="#cb56-80" aria-hidden="true" tabindex="-1"></a>toydata <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">20</span>, <span class="dv">5</span>)</span>
-<span id="cb56-81"><a href="#cb56-81" aria-hidden="true" tabindex="-1"></a>toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span>
-<span id="cb56-82"><a href="#cb56-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-83"><a href="#cb56-83" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">&gt;=</span> <span class="dv">5</span>]</span>
-<span id="cb56-84"><a href="#cb56-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-85"><a href="#cb56-85" aria-hidden="true" tabindex="-1"></a>indices <span class="ot">&lt;-</span> toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span>
-<span id="cb56-86"><a href="#cb56-86" aria-hidden="true" tabindex="-1"></a>toydata[indices]</span>
-<span id="cb56-87"><a href="#cb56-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-88"><a href="#cb56-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-89"><a href="#cb56-89" aria-hidden="true" tabindex="-1"></a>**EXCERCISE 1:** Using the <span class="in">`toydata`</span> vector, display only the even values. Hint: use the modulo operator <span class="in">`%%`</span> to check for evenness.</span>
-<span id="cb56-90"><a href="#cb56-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-91"><a href="#cb56-91" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-92"><a href="#cb56-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-95"><a href="#cb56-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-96"><a href="#cb56-96" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-97"><a href="#cb56-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-98"><a href="#cb56-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-99"><a href="#cb56-99" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>]</span>
-<span id="cb56-100"><a href="#cb56-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-101"><a href="#cb56-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-102"><a href="#cb56-102" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-103"><a href="#cb56-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-104"><a href="#cb56-104" aria-hidden="true" tabindex="-1"></a>Applying these rules to dataframes is straightforward. Let&#39;s try several such filterings on the <span class="in">`BTdata`</span> dataset (load it if you haven&#39;t done it yet). We want to select rows of data based on specific values of one or more variables. This means we will insert our logicval expressions in the row&#39;s (the first) index. To refer to specific variable in your expression, you can use the <span class="in">`$`</span> operator. E.g., <span class="in">`BTdata[BTdata$sex == &quot;Male&quot;, ]`</span> will return all rows where the <span class="in">`sex`</span> variable indicates male sex.</span>
-<span id="cb56-105"><a href="#cb56-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-108"><a href="#cb56-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-109"><a href="#cb56-109" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb56-110"><a href="#cb56-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-111"><a href="#cb56-111" aria-hidden="true" tabindex="-1"></a>BTdata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;BTdata.csv&quot;</span>),</span>
-<span id="cb56-112"><a href="#cb56-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb56-113"><a href="#cb56-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
-<span id="cb56-114"><a href="#cb56-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>,</span>
-<span id="cb56-115"><a href="#cb56-115" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span></span>
-<span id="cb56-116"><a href="#cb56-116" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb56-117"><a href="#cb56-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-118"><a href="#cb56-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-119"><a href="#cb56-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-120"><a href="#cb56-120" aria-hidden="true" tabindex="-1"></a>**EXERCISE 2:** Display all rows of the <span class="in">`BTdata`</span> that fulfill the following conditions:</span>
-<span id="cb56-121"><a href="#cb56-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-122"><a href="#cb56-122" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All males (<span class="in">`sex`</span>) heavier (<span class="in">`weight`</span>) than 11 grams</span>
-<span id="cb56-123"><a href="#cb56-123" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Birds that bred in parks (<span class="in">`habitat`</span>) that were mother by female no. R187239</span>
-<span id="cb56-124"><a href="#cb56-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All females (<span class="in">`sex`</span>) heavier than 10.3 grams, or males specifically with tarsus below 14 mm (<span class="in">`tarsus`</span>), selecting only the first 3 columns of data</span>
-<span id="cb56-125"><a href="#cb56-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All birds that hatched in forests (<span class="in">`habitat`</span>) before day 45 or after day 53 (<span class="in">`hatchdate`</span>)</span>
-<span id="cb56-126"><a href="#cb56-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-127"><a href="#cb56-127" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-128"><a href="#cb56-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-131"><a href="#cb56-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-132"><a href="#cb56-132" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-133"><a href="#cb56-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-134"><a href="#cb56-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-135"><a href="#cb56-135" aria-hidden="true" tabindex="-1"></a>BTdata[BTdata<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> BTdata<span class="sc">$</span>weight <span class="sc">&gt;</span> <span class="dv">11</span>, ]</span>
-<span id="cb56-136"><a href="#cb56-136" aria-hidden="true" tabindex="-1"></a>BTdata[BTdata<span class="sc">$</span>habitat <span class="sc">==</span> <span class="st">&quot;park&quot;</span> <span class="sc">&amp;</span> BTdata<span class="sc">$</span>dam <span class="sc">==</span> <span class="st">&quot;R187239&quot;</span>, ]</span>
-<span id="cb56-137"><a href="#cb56-137" aria-hidden="true" tabindex="-1"></a>BTdata[(BTdata<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;Fem&quot;</span> <span class="sc">&amp;</span> BTdata<span class="sc">$</span>weight <span class="sc">&gt;</span> <span class="fl">10.3</span>) <span class="sc">|</span></span>
-<span id="cb56-138"><a href="#cb56-138" aria-hidden="true" tabindex="-1"></a>    (BTdata<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> BTdata<span class="sc">$</span>tarsus <span class="sc">&lt;</span> <span class="dv">14</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
-<span id="cb56-139"><a href="#cb56-139" aria-hidden="true" tabindex="-1"></a>BTdata[BTdata<span class="sc">$</span>habitat <span class="sc">==</span> <span class="st">&quot;forest&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb56-140"><a href="#cb56-140" aria-hidden="true" tabindex="-1"></a>    (BTdata<span class="sc">$</span>hatchdate <span class="sc">&lt;</span> <span class="dv">45</span> <span class="sc">|</span> BTdata<span class="sc">$</span>hatchdate <span class="sc">&gt;</span> <span class="dv">53</span>), ]</span>
-<span id="cb56-141"><a href="#cb56-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-142"><a href="#cb56-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-143"><a href="#cb56-143" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-144"><a href="#cb56-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-145"><a href="#cb56-145" aria-hidden="true" tabindex="-1"></a>Similar result can be achieved by using the <span class="in">`subset()`</span> function - and providing logical expressions as function arguments (<span class="in">`BTdata$`</span> can be omitted).</span>
-<span id="cb56-146"><a href="#cb56-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-147"><a href="#cb56-147" aria-hidden="true" tabindex="-1"></a>**EXERCISE 3:** Achieve the same results as in the previous exercise, but using the <span class="in">`subset()`</span> function, for the first two filterings in EXCERCISE 2.</span>
-<span id="cb56-148"><a href="#cb56-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-149"><a href="#cb56-149" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-150"><a href="#cb56-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-153"><a href="#cb56-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-154"><a href="#cb56-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-155"><a href="#cb56-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-156"><a href="#cb56-156" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(BTdata, sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
-<span id="cb56-157"><a href="#cb56-157" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(BTdata, habitat <span class="sc">==</span> <span class="st">&quot;park&quot;</span> <span class="sc">&amp;</span> dam <span class="sc">==</span> <span class="st">&quot;R187239&quot;</span>)</span>
-<span id="cb56-158"><a href="#cb56-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-159"><a href="#cb56-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-160"><a href="#cb56-160" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-161"><a href="#cb56-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-162"><a href="#cb56-162" aria-hidden="true" tabindex="-1"></a>What is nice about the indexing paradigm, you can use it to do useful things, e.g., to randomply sample rows of data if needed. To do this, you will need the <span class="in">`sample()`</span> function, that is able to randomly pick values from a larger vector, with or without replacement. Have a look at the function&#39;s help file to understand how it works.</span>
-<span id="cb56-163"><a href="#cb56-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-164"><a href="#cb56-164" aria-hidden="true" tabindex="-1"></a>**EXERCISE 4:** Randomly sample 10 rows from the <span class="in">`BTdata`</span> dataset, with replacement.</span>
-<span id="cb56-165"><a href="#cb56-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-166"><a href="#cb56-166" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-167"><a href="#cb56-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-170"><a href="#cb56-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-171"><a href="#cb56-171" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-172"><a href="#cb56-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-173"><a href="#cb56-173" aria-hidden="true" tabindex="-1"></a>BTdata[</span>
-<span id="cb56-174"><a href="#cb56-174" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(BTdata),</span>
-<span id="cb56-175"><a href="#cb56-175" aria-hidden="true" tabindex="-1"></a>        <span class="dv">10</span>,</span>
-<span id="cb56-176"><a href="#cb56-176" aria-hidden="true" tabindex="-1"></a>        <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb56-177"><a href="#cb56-177" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb56-178"><a href="#cb56-178" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb56-179"><a href="#cb56-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-180"><a href="#cb56-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-181"><a href="#cb56-181" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-182"><a href="#cb56-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-183"><a href="#cb56-183" aria-hidden="true" tabindex="-1"></a><span class="fu">### Missing values</span></span>
-<span id="cb56-184"><a href="#cb56-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-185"><a href="#cb56-185" aria-hidden="true" tabindex="-1"></a>You should be always cautious when filtering out missing values. Have a look at this example dataset:</span>
-<span id="cb56-186"><a href="#cb56-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-189"><a href="#cb56-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-190"><a href="#cb56-190" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb56-191"><a href="#cb56-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-192"><a href="#cb56-192" aria-hidden="true" tabindex="-1"></a>missingdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb56-193"><a href="#cb56-193" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>),</span>
-<span id="cb56-194"><a href="#cb56-194" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">6</span>),</span>
-<span id="cb56-195"><a href="#cb56-195" aria-hidden="true" tabindex="-1"></a>    <span class="at">z =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
-<span id="cb56-196"><a href="#cb56-196" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb56-197"><a href="#cb56-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-198"><a href="#cb56-198" aria-hidden="true" tabindex="-1"></a>missingdata</span>
-<span id="cb56-199"><a href="#cb56-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-200"><a href="#cb56-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-201"><a href="#cb56-201" aria-hidden="true" tabindex="-1"></a>**EXERCISE 5:** Naively applying the <span class="in">`na.omit()`</span> function can lead to unexpected data loss. Filter out the missing values from the <span class="in">`missingdata`</span> dataset using the <span class="in">`na.omit()`</span> function applied to the whole data. How many rows of observations are left?</span>
-<span id="cb56-202"><a href="#cb56-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-203"><a href="#cb56-203" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-204"><a href="#cb56-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-207"><a href="#cb56-207" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-208"><a href="#cb56-208" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-209"><a href="#cb56-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-210"><a href="#cb56-210" aria-hidden="true" tabindex="-1"></a><span class="fu">na.omit</span>(missingdata)</span>
-<span id="cb56-211"><a href="#cb56-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-212"><a href="#cb56-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-213"><a href="#cb56-213" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-214"><a href="#cb56-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-215"><a href="#cb56-215" aria-hidden="true" tabindex="-1"></a>**EXERCISE 6:** Now, let&#39;s assume that variable <span class="in">`x`</span> is not of interest to us. We don;t want to filter out its <span class="in">`NA`</span> values. Filter out the missing values from the <span class="in">`missingdata`</span> dataset, but only for variables <span class="in">`y`</span> and <span class="in">`z`</span>. How many rows of observations are left? Hint: you can use the logical function <span class="in">`is.na()`</span> to check for <span class="in">`NA`</span> values - it is safer than using <span class="in">`==`</span> in this context.</span>
-<span id="cb56-216"><a href="#cb56-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-217"><a href="#cb56-217" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-218"><a href="#cb56-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-221"><a href="#cb56-221" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-222"><a href="#cb56-222" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-223"><a href="#cb56-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-224"><a href="#cb56-224" aria-hidden="true" tabindex="-1"></a>missingdata[<span class="sc">!</span><span class="fu">is.na</span>(missingdata<span class="sc">$</span>y) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(missingdata<span class="sc">$</span>z), ]</span>
-<span id="cb56-225"><a href="#cb56-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-226"><a href="#cb56-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-227"><a href="#cb56-227" aria-hidden="true" tabindex="-1"></a>You could also achieve the same result using <span class="in">`subset()`</span>.</span>
-<span id="cb56-228"><a href="#cb56-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-229"><a href="#cb56-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-230"><a href="#cb56-230" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data wrangling with `tidyverse()`</span></span>
-<span id="cb56-231"><a href="#cb56-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-232"><a href="#cb56-232" aria-hidden="true" tabindex="-1"></a>Manipulating data is an extensive topic, so much that several packages where created to simplify the process. The most widely used philosophy comes from the <span class="in">`tidyverse`</span> dialect of R - it is an ecosystem of functions that provide wrappers to built-in methods and streamline the data manipulation process. The <span class="in">`dplyr`</span> package is one of the most important components of the <span class="in">`tidyverse`</span> - it provides a set of functions that are easy to use and understand.</span>
-<span id="cb56-233"><a href="#cb56-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-234"><a href="#cb56-234" aria-hidden="true" tabindex="-1"></a><span class="in">`dplyr`</span> works through so called *verbs* - functions that perform specific operations on dataframes. Multiple verbs can e used into larger &quot;sentences&quot; - *pipelines* - that are executed sequentially. In a pipeline, the output of one verb is passed to the next one, and so on. This way, you can perform complex operations on dataframes in a very readable way. Subsequent verbs are separated by the <span class="in">`%&gt;%`</span> operator.</span>
-<span id="cb56-235"><a href="#cb56-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-236"><a href="#cb56-236" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb56-237"><a href="#cb56-237" aria-hidden="true" tabindex="-1"></a><span class="fu">## Verbs in `dplyr`</span></span>
-<span id="cb56-238"><a href="#cb56-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-239"><a href="#cb56-239" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`filter()`</span> - select rows based on conditions</span>
-<span id="cb56-240"><a href="#cb56-240" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`select()`</span> - select columns based on conditions</span>
-<span id="cb56-241"><a href="#cb56-241" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`mutate()`</span> - create new columns based on existing ones</span>
-<span id="cb56-242"><a href="#cb56-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`arrange()`</span> - sort rows based on column values</span>
-<span id="cb56-243"><a href="#cb56-243" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`summarise()`</span> - create summary statistics</span>
-<span id="cb56-244"><a href="#cb56-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`group_by()`</span> - group data by specific variables</span>
-<span id="cb56-245"><a href="#cb56-245" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-246"><a href="#cb56-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-247"><a href="#cb56-247" aria-hidden="true" tabindex="-1"></a>Before proceeding, make sure you have the <span class="in">`tidyverse`</span> package installed and loaded.</span>
-<span id="cb56-248"><a href="#cb56-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-251"><a href="#cb56-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-252"><a href="#cb56-252" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb56-253"><a href="#cb56-253" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;tidyverse&quot;)</span></span>
-<span id="cb56-254"><a href="#cb56-254" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb56-255"><a href="#cb56-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-256"><a href="#cb56-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-257"><a href="#cb56-257" aria-hidden="true" tabindex="-1"></a>We will be working on the <span class="in">`BTdata`</span> dataset, so make sure it is still loaded.</span>
-<span id="cb56-258"><a href="#cb56-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-259"><a href="#cb56-259" aria-hidden="true" tabindex="-1"></a><span class="fu">### `filter()`</span></span>
-<span id="cb56-260"><a href="#cb56-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-261"><a href="#cb56-261" aria-hidden="true" tabindex="-1"></a>**EXERCISE 7:** Using the <span class="in">`filter()`</span> function, display all rows of the <span class="in">`BTdata`</span> that fulfill the following conditions:</span>
-<span id="cb56-262"><a href="#cb56-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-263"><a href="#cb56-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All males (<span class="in">`sex`</span>) heavier (<span class="in">`weight`</span>) than 11 grams</span>
-<span id="cb56-264"><a href="#cb56-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Birds that bred in parks (<span class="in">`habitat`</span>) that were mother by females R187239 and R187240</span>
-<span id="cb56-265"><a href="#cb56-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-266"><a href="#cb56-266" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-267"><a href="#cb56-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-270"><a href="#cb56-270" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-271"><a href="#cb56-271" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-272"><a href="#cb56-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-273"><a href="#cb56-273" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(BTdata, sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
-<span id="cb56-274"><a href="#cb56-274" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(BTdata, habitat <span class="sc">==</span> <span class="st">&quot;park&quot;</span> <span class="sc">&amp;</span> dam <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;R187239&quot;</span>, <span class="st">&quot;R187932&quot;</span>))</span>
-<span id="cb56-275"><a href="#cb56-275" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-276"><a href="#cb56-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-277"><a href="#cb56-277" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-278"><a href="#cb56-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-279"><a href="#cb56-279" aria-hidden="true" tabindex="-1"></a>Note, that in the examples above I used <span class="in">`filter()`</span> as a typical function. We can however &quot;pipe&quot; the data into the function, in which case we omit the <span class="in">`data`</span> argument in <span class="in">`filter()`</span>. Try to build the filtering again using the <span class="in">`%&gt;%`</span> operator.</span>
-<span id="cb56-280"><a href="#cb56-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-281"><a href="#cb56-281" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-282"><a href="#cb56-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-285"><a href="#cb56-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-286"><a href="#cb56-286" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-287"><a href="#cb56-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-288"><a href="#cb56-288" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-289"><a href="#cb56-289" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
-<span id="cb56-290"><a href="#cb56-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-291"><a href="#cb56-291" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-292"><a href="#cb56-292" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(habitat <span class="sc">==</span> <span class="st">&quot;park&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb56-293"><a href="#cb56-293" aria-hidden="true" tabindex="-1"></a>        dam <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;R187239&quot;</span>, <span class="st">&quot;R187932&quot;</span>))</span>
-<span id="cb56-294"><a href="#cb56-294" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-295"><a href="#cb56-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-296"><a href="#cb56-296" aria-hidden="true" tabindex="-1"></a>The pipe operator <span class="in">`%&gt;%`</span> makes it possible to chain several conditions or other verb operations, one after anotr:</span>
-<span id="cb56-297"><a href="#cb56-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-300"><a href="#cb56-300" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-301"><a href="#cb56-301" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb56-302"><a href="#cb56-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-303"><a href="#cb56-303" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-304"><a href="#cb56-304" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-305"><a href="#cb56-305" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
-<span id="cb56-306"><a href="#cb56-306" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-307"><a href="#cb56-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-308"><a href="#cb56-308" aria-hidden="true" tabindex="-1"></a>You also use to save the outpout of your filtering to an object:</span>
-<span id="cb56-309"><a href="#cb56-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-312"><a href="#cb56-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-313"><a href="#cb56-313" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb56-314"><a href="#cb56-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-315"><a href="#cb56-315" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-316"><a href="#cb56-316" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-317"><a href="#cb56-317" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
-<span id="cb56-318"><a href="#cb56-318" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-319"><a href="#cb56-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-320"><a href="#cb56-320" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb56-321"><a href="#cb56-321" aria-hidden="true" tabindex="-1"></a><span class="fu">## Multiple conditions with `AND`</span></span>
-<span id="cb56-322"><a href="#cb56-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-323"><a href="#cb56-323" aria-hidden="true" tabindex="-1"></a>In the <span class="in">`filter()`</span> function, you can join multiple conditions with the <span class="in">`&amp;`</span> operator, or simply separating them with commas. Of course, this does not apply to the <span class="in">`|`</span> operator, which is used for <span class="in">`OR`</span> conditions.</span>
-<span id="cb56-324"><a href="#cb56-324" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb56-325"><a href="#cb56-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-326"><a href="#cb56-326" aria-hidden="true" tabindex="-1"></a><span class="fu">### `select()`</span></span>
-<span id="cb56-327"><a href="#cb56-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-328"><a href="#cb56-328" aria-hidden="true" tabindex="-1"></a>The <span class="in">`select()`</span> function is used to select columns of interest from a dataframe. You can use it to select columns by name, or by their position in the dataframe. You can also use the <span class="in">`-`</span> operator to exclude columns from the selection.</span>
-<span id="cb56-329"><a href="#cb56-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-330"><a href="#cb56-330" aria-hidden="true" tabindex="-1"></a>**EXERCISE 8:** Using the <span class="in">`select()`</span> function, display only the columns <span class="in">`sex`</span>, <span class="in">`weight`</span>, and <span class="in">`tarsus`</span> from the <span class="in">`BTdata`</span> dataset. Join this selection with filtering that displays only individuals heavier than 10.5 grams.</span>
-<span id="cb56-331"><a href="#cb56-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-332"><a href="#cb56-332" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-333"><a href="#cb56-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-336"><a href="#cb56-336" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-337"><a href="#cb56-337" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-338"><a href="#cb56-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-339"><a href="#cb56-339" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-340"><a href="#cb56-340" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> <span class="fl">10.5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-341"><a href="#cb56-341" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(sex, weight, tarsus)</span>
-<span id="cb56-342"><a href="#cb56-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-343"><a href="#cb56-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-344"><a href="#cb56-344" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-345"><a href="#cb56-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-346"><a href="#cb56-346" aria-hidden="true" tabindex="-1"></a>Using of <span class="in">`select()`</span> is made easier by additional helpers that allow for selecting columns matching certain name patterns, e.g., <span class="in">`starts_with()`</span>, <span class="in">`ends_with()`</span>, <span class="in">`contains()`</span>, <span class="in">`matches()`</span>, <span class="in">`num_range()`</span>, <span class="in">`one_of()`</span>, <span class="in">`everything()`</span>.</span>
-<span id="cb56-347"><a href="#cb56-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-348"><a href="#cb56-348" aria-hidden="true" tabindex="-1"></a>**EXERCISE 9:** In the previous example, instead of the selected columns, pick only those that start with <span class="in">`bill`</span>.</span>
-<span id="cb56-349"><a href="#cb56-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-350"><a href="#cb56-350" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-351"><a href="#cb56-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-354"><a href="#cb56-354" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-355"><a href="#cb56-355" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-356"><a href="#cb56-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-357"><a href="#cb56-357" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-358"><a href="#cb56-358" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> <span class="fl">10.5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-359"><a href="#cb56-359" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;bill&quot;</span>))</span>
-<span id="cb56-360"><a href="#cb56-360" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-361"><a href="#cb56-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-362"><a href="#cb56-362" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-363"><a href="#cb56-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-364"><a href="#cb56-364" aria-hidden="true" tabindex="-1"></a><span class="fu">### `arrange()`</span></span>
-<span id="cb56-365"><a href="#cb56-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-366"><a href="#cb56-366" aria-hidden="true" tabindex="-1"></a>The <span class="in">`arrange()`</span> function is used to sort rows of a dataframe based on the values of a specific column. You can sort in ascending or descending order.</span>
-<span id="cb56-367"><a href="#cb56-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-368"><a href="#cb56-368" aria-hidden="true" tabindex="-1"></a>**EXERCISE 10:** Using the <span class="in">`arrange()`</span> function, display the <span class="in">`BTdata`</span> dataset sorted by the <span class="in">`weight`</span> column in descending order, selecting only cases belonging to mothers (<span class="in">`dam`</span>): R187239, R187547, and R187292. Tip: yo will need to use the <span class="in">`desc()`</span> helper.</span>
-<span id="cb56-369"><a href="#cb56-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-370"><a href="#cb56-370" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-371"><a href="#cb56-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-374"><a href="#cb56-374" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-375"><a href="#cb56-375" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-376"><a href="#cb56-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-377"><a href="#cb56-377" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-378"><a href="#cb56-378" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(dam <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;R187239&quot;</span>, <span class="st">&quot;R187547&quot;</span>, <span class="st">&quot;R187292&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb56-379"><a href="#cb56-379" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(weight))</span>
-<span id="cb56-380"><a href="#cb56-380" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-381"><a href="#cb56-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-382"><a href="#cb56-382" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-383"><a href="#cb56-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-384"><a href="#cb56-384" aria-hidden="true" tabindex="-1"></a><span class="fu">### `mutate()`</span></span>
-<span id="cb56-385"><a href="#cb56-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-386"><a href="#cb56-386" aria-hidden="true" tabindex="-1"></a>The <span class="in">`mutate()`</span> function is used to create new columns based on existing ones. You can use it to perform calculations on columns, or to create new columns based on logical conditions.</span>
-<span id="cb56-387"><a href="#cb56-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-388"><a href="#cb56-388" aria-hidden="true" tabindex="-1"></a>**EXERCISE 11:** Using the <span class="in">`mutate()`</span> function, create a new column in the <span class="in">`BTdata`</span> dataset that will contain the ratio of <span class="in">`weight`</span> to <span class="in">`tarsus`</span> length. Name this column <span class="in">`wt_tarsus_ratio`</span>.</span>
-<span id="cb56-389"><a href="#cb56-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-390"><a href="#cb56-390" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-391"><a href="#cb56-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-394"><a href="#cb56-394" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-395"><a href="#cb56-395" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-396"><a href="#cb56-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-397"><a href="#cb56-397" aria-hidden="true" tabindex="-1"></a>BTdata <span class="ot">&lt;-</span> BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-398"><a href="#cb56-398" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">wt_tarsus_ratio =</span> weight <span class="sc">/</span> tarsus)</span>
-<span id="cb56-399"><a href="#cb56-399" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(BTdata)</span>
-<span id="cb56-400"><a href="#cb56-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-401"><a href="#cb56-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-402"><a href="#cb56-402" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb56-403"><a href="#cb56-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-404"><a href="#cb56-404" aria-hidden="true" tabindex="-1"></a>**EXERCISE 12:** Using the <span class="in">`mutate()`</span> function and data filtering create a new dataframe with birds that have exceptionally long and narrow bills (i.e., that have the bill length to depth ratio  above 20). Name this dataframe <span class="in">`long_bills`</span>. Display the first rows of this new dataset.</span>
-<span id="cb56-405"><a href="#cb56-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-406"><a href="#cb56-406" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-407"><a href="#cb56-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-410"><a href="#cb56-410" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-411"><a href="#cb56-411" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-412"><a href="#cb56-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-413"><a href="#cb56-413" aria-hidden="true" tabindex="-1"></a>long_bills <span class="ot">&lt;-</span> BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-414"><a href="#cb56-414" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_length <span class="sc">/</span> bill_depth) <span class="sc">%&gt;%</span></span>
-<span id="cb56-415"><a href="#cb56-415" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(bill_ratio <span class="sc">&gt;</span> <span class="dv">20</span>)</span>
-<span id="cb56-416"><a href="#cb56-416" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(long_bills)</span>
-<span id="cb56-417"><a href="#cb56-417" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-418"><a href="#cb56-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-419"><a href="#cb56-419" aria-hidden="true" tabindex="-1"></a><span class="fu">### `summarise()` and `group_by()`</span></span>
-<span id="cb56-420"><a href="#cb56-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-421"><a href="#cb56-421" aria-hidden="true" tabindex="-1"></a>The <span class="in">`summarise()`</span> function is used to create summary statistics for groups of data. The <span class="in">`group_by()`</span> function is used to group data by specific variables. On its own, the <span class="in">`summarise()`</span> is not veru useful, it collapses the dataset to few (even single) rows.</span>
-<span id="cb56-422"><a href="#cb56-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-425"><a href="#cb56-425" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-426"><a href="#cb56-426" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb56-427"><a href="#cb56-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-428"><a href="#cb56-428" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-429"><a href="#cb56-429" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_weight =</span> <span class="fu">mean</span>(weight),</span>
-<span id="cb56-430"><a href="#cb56-430" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd_weight =</span> <span class="fu">sd</span>(weight),</span>
-<span id="cb56-431"><a href="#cb56-431" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> <span class="fu">n</span>()</span>
-<span id="cb56-432"><a href="#cb56-432" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb56-433"><a href="#cb56-433" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-434"><a href="#cb56-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-435"><a href="#cb56-435" aria-hidden="true" tabindex="-1"></a>Note: I&#39;ve used the helper function <span class="in">`n()`</span> which can be applied to return the number of rows in a given set of data being summarized.</span>
-<span id="cb56-436"><a href="#cb56-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-437"><a href="#cb56-437" aria-hidden="true" tabindex="-1"></a>However, we can group the data by ceretain variables. On its own, groupin does not alter the data structure - but it adds an attribute, that can be used by <span class="in">`summarise()`</span> to perform summaries in groups instead of the whole dataset.\</span>
-<span id="cb56-438"><a href="#cb56-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-439"><a href="#cb56-439" aria-hidden="true" tabindex="-1"></a>**EXERCISE 13:** Using the <span class="in">`group_by()`</span> and <span class="in">`summarise()`</span> functions, calculate the mean and SD of <span class="in">`weight`</span> for each breeding female (<span class="in">`dam`</span>) in the <span class="in">`BTdata`</span> dataset. Also, add another variable displaying the number of cases for each female. At the end, display only the first 6 rows of the summary.</span>
-<span id="cb56-440"><a href="#cb56-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-441"><a href="#cb56-441" aria-hidden="true" tabindex="-1"></a>**Output**</span>
-<span id="cb56-442"><a href="#cb56-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-445"><a href="#cb56-445" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-446"><a href="#cb56-446" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
-<span id="cb56-447"><a href="#cb56-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-448"><a href="#cb56-448" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
-<span id="cb56-449"><a href="#cb56-449" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(dam) <span class="sc">%&gt;%</span></span>
-<span id="cb56-450"><a href="#cb56-450" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_weight =</span> <span class="fu">mean</span>(weight),</span>
-<span id="cb56-451"><a href="#cb56-451" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd_weight =</span> <span class="fu">sd</span>(weight),</span>
-<span id="cb56-452"><a href="#cb56-452" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> <span class="fu">n</span>()</span>
-<span id="cb56-453"><a href="#cb56-453" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb56-454"><a href="#cb56-454" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">6</span>)</span>
-<span id="cb56-455"><a href="#cb56-455" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb56-456"><a href="#cb56-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-457"><a href="#cb56-457" aria-hidden="true" tabindex="-1"></a>Do you see anything &quot;odd&quot; in this dataframe rendering in your console (in the way it is displayed)?</span>
-<span id="cb56-458"><a href="#cb56-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-459"><a href="#cb56-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-460"><a href="#cb56-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Putting it all together - a simple wrangling project</span></span>
+<div class="sourceCode" id="cb60" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Class 3 - data types, daa loading, data manipulation</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> Szymon Drobniak</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> &#39;`r Sys.Date()`&#39;</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co">    html:</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co">        toc: true</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co">        toc-location: left</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co">        toc-depth: 3</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="co">        theme: simplex</span></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="co">        embed-resources: true</span></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a><span class="co">        code-fold: true</span></span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a><span class="co">        code-tools: true</span></span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a><span class="co">        number-sections: true</span></span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a><span class="co">        code-block-bg: &quot;#f4f4f4&quot;</span></span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a><span class="co">        code-block-border-left: false</span></span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a><span class="co">    gfm: default</span></span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a><span class="an">crossref:</span></span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-title: Figure</span></span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a><span class="co">    tbl-title: Table</span></span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a><span class="co">    title-delim: —</span></span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-prefix: Fig.</span></span>
+<span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a><span class="co">    tbl-prefix: Tab.</span></span>
+<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a><span class="co">    eq-prefix: Eq.</span></span>
+<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span></span>
+<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a><span class="co">    chunk_output_type: console</span></span>
+<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb60-28"><a href="#cb60-28" aria-hidden="true" tabindex="-1"></a><span class="co">    cache: false</span></span>
+<span id="cb60-29"><a href="#cb60-29" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb60-30"><a href="#cb60-30" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb60-31"><a href="#cb60-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-32"><a href="#cb60-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb60-33"><a href="#cb60-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb60-34"><a href="#cb60-34" aria-hidden="true" tabindex="-1"></a>format <span class="ot">&lt;-</span> knitr<span class="sc">::</span>opts_knit<span class="sc">$</span><span class="fu">get</span>(<span class="st">&quot;rmarkdown.pandoc.to&quot;</span>)</span>
+<span id="cb60-35"><a href="#cb60-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-36"><a href="#cb60-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-37"><a href="#cb60-37" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb60-38"><a href="#cb60-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Before you start...</span></span>
+<span id="cb60-39"><a href="#cb60-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-40"><a href="#cb60-40" aria-hidden="true" tabindex="-1"></a>Make sure you have the following set and ready:</span>
+<span id="cb60-41"><a href="#cb60-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-42"><a href="#cb60-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Folder you want touse as your working directory exists on your HDD</span>
+<span id="cb60-43"><a href="#cb60-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set this folder as working directory (using a menu or <span class="in">`setwd(&quot;YOUR_PATH)`</span>)</span>
+<span id="cb60-44"><a href="#cb60-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Relevant data (if provided) is in your working directory</span>
+<span id="cb60-45"><a href="#cb60-45" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb60-46"><a href="#cb60-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-47"><a href="#cb60-47" aria-hidden="true" tabindex="-1"></a>**In the below instructions...**</span>
+<span id="cb60-48"><a href="#cb60-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-49"><a href="#cb60-49" aria-hidden="true" tabindex="-1"></a>**EXERCISE X:** are bits of code to execute/practice pieces to do, often with only hints on how to perform them.</span>
+<span id="cb60-50"><a href="#cb60-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-51"><a href="#cb60-51" aria-hidden="true" tabindex="-1"></a>**Output** indicates the typical output you should expect from a given instruction.</span>
+<span id="cb60-52"><a href="#cb60-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-53"><a href="#cb60-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-54"><a href="#cb60-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-55"><a href="#cb60-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data wrangling in R using built-in methods</span></span>
+<span id="cb60-56"><a href="#cb60-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-57"><a href="#cb60-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Filtering</span></span>
+<span id="cb60-58"><a href="#cb60-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-59"><a href="#cb60-59" aria-hidden="true" tabindex="-1"></a>Instead of using numerical indices, you can use logical expressions to set conditions on data structures in R. To make use of them, you need to understand, that applying a logical operator to a list of data values results in a list of <span class="in">`TRUE`</span> and <span class="in">`FALSE`</span> values. They can be used themselves as indices to subset data.</span>
+<span id="cb60-60"><a href="#cb60-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-61"><a href="#cb60-61" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb60-62"><a href="#cb60-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logical operators</span></span>
+<span id="cb60-63"><a href="#cb60-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-64"><a href="#cb60-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`==`</span> - equal to</span>
+<span id="cb60-65"><a href="#cb60-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`!=`</span> - not equal to</span>
+<span id="cb60-66"><a href="#cb60-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&gt;`</span> - greater than</span>
+<span id="cb60-67"><a href="#cb60-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&lt;`</span> - less than</span>
+<span id="cb60-68"><a href="#cb60-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&gt;=`</span> - greater or equal to</span>
+<span id="cb60-69"><a href="#cb60-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&lt;=`</span> - less or equal to</span>
+<span id="cb60-70"><a href="#cb60-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&amp;`</span> - and</span>
+<span id="cb60-71"><a href="#cb60-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`|`</span> - or</span>
+<span id="cb60-72"><a href="#cb60-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`!`</span> - not (negation, reverses the logical value)</span>
+<span id="cb60-73"><a href="#cb60-73" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb60-74"><a href="#cb60-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-77"><a href="#cb60-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-78"><a href="#cb60-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb60-79"><a href="#cb60-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-80"><a href="#cb60-80" aria-hidden="true" tabindex="-1"></a>toydata <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">20</span>, <span class="dv">5</span>)</span>
+<span id="cb60-81"><a href="#cb60-81" aria-hidden="true" tabindex="-1"></a>toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span>
+<span id="cb60-82"><a href="#cb60-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-83"><a href="#cb60-83" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">&gt;=</span> <span class="dv">5</span>]</span>
+<span id="cb60-84"><a href="#cb60-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-85"><a href="#cb60-85" aria-hidden="true" tabindex="-1"></a>indices <span class="ot">&lt;-</span> toydata <span class="sc">&gt;=</span> <span class="dv">5</span></span>
+<span id="cb60-86"><a href="#cb60-86" aria-hidden="true" tabindex="-1"></a>toydata[indices]</span>
+<span id="cb60-87"><a href="#cb60-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-88"><a href="#cb60-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-89"><a href="#cb60-89" aria-hidden="true" tabindex="-1"></a>**EXCERCISE 1:** Using the <span class="in">`toydata`</span> vector, display only the even values. Hint: use the modulo operator <span class="in">`%%`</span> to check for evenness.</span>
+<span id="cb60-90"><a href="#cb60-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-91"><a href="#cb60-91" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-92"><a href="#cb60-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-95"><a href="#cb60-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-96"><a href="#cb60-96" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-97"><a href="#cb60-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-98"><a href="#cb60-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-99"><a href="#cb60-99" aria-hidden="true" tabindex="-1"></a>toydata[toydata <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>]</span>
+<span id="cb60-100"><a href="#cb60-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-101"><a href="#cb60-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-102"><a href="#cb60-102" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-103"><a href="#cb60-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-104"><a href="#cb60-104" aria-hidden="true" tabindex="-1"></a>Applying these rules to dataframes is straightforward. Let&#39;s try several such filterings on the <span class="in">`BTdata`</span> dataset (load it if you haven&#39;t done it yet). We want to select rows of data based on specific values of one or more variables. This means we will insert our logicval expressions in the row&#39;s (the first) index. To refer to specific variable in your expression, you can use the <span class="in">`$`</span> operator. E.g., <span class="in">`BTdata[BTdata$sex == &quot;Male&quot;, ]`</span> will return all rows where the <span class="in">`sex`</span> variable indicates male sex.</span>
+<span id="cb60-105"><a href="#cb60-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-108"><a href="#cb60-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-109"><a href="#cb60-109" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb60-110"><a href="#cb60-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-111"><a href="#cb60-111" aria-hidden="true" tabindex="-1"></a>BTdata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;BTdata.csv&quot;</span>),</span>
+<span id="cb60-112"><a href="#cb60-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb60-113"><a href="#cb60-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb60-114"><a href="#cb60-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb60-115"><a href="#cb60-115" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span></span>
+<span id="cb60-116"><a href="#cb60-116" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-117"><a href="#cb60-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-118"><a href="#cb60-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-119"><a href="#cb60-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-120"><a href="#cb60-120" aria-hidden="true" tabindex="-1"></a>**EXERCISE 2:** Display all rows of the <span class="in">`BTdata`</span> that fulfill the following conditions:</span>
+<span id="cb60-121"><a href="#cb60-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-122"><a href="#cb60-122" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All males (<span class="in">`sex`</span>) heavier (<span class="in">`weight`</span>) than 11 grams</span>
+<span id="cb60-123"><a href="#cb60-123" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Birds that bred in parks (<span class="in">`habitat`</span>) that were mother by female no. R187239</span>
+<span id="cb60-124"><a href="#cb60-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All females (<span class="in">`sex`</span>) heavier than 10.3 grams, or males specifically with tarsus below 14 mm (<span class="in">`tarsus`</span>), selecting only the first 3 columns of data</span>
+<span id="cb60-125"><a href="#cb60-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All birds that hatched in forests (<span class="in">`habitat`</span>) before day 45 or after day 53 (<span class="in">`hatchdate`</span>)</span>
+<span id="cb60-126"><a href="#cb60-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-127"><a href="#cb60-127" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-128"><a href="#cb60-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-131"><a href="#cb60-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-132"><a href="#cb60-132" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-133"><a href="#cb60-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-134"><a href="#cb60-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-135"><a href="#cb60-135" aria-hidden="true" tabindex="-1"></a>BTdata[BTdata<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> BTdata<span class="sc">$</span>weight <span class="sc">&gt;</span> <span class="dv">11</span>, ]</span>
+<span id="cb60-136"><a href="#cb60-136" aria-hidden="true" tabindex="-1"></a>BTdata[BTdata<span class="sc">$</span>habitat <span class="sc">==</span> <span class="st">&quot;park&quot;</span> <span class="sc">&amp;</span> BTdata<span class="sc">$</span>dam <span class="sc">==</span> <span class="st">&quot;R187239&quot;</span>, ]</span>
+<span id="cb60-137"><a href="#cb60-137" aria-hidden="true" tabindex="-1"></a>BTdata[(BTdata<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;Fem&quot;</span> <span class="sc">&amp;</span> BTdata<span class="sc">$</span>weight <span class="sc">&gt;</span> <span class="fl">10.3</span>) <span class="sc">|</span></span>
+<span id="cb60-138"><a href="#cb60-138" aria-hidden="true" tabindex="-1"></a>    (BTdata<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> BTdata<span class="sc">$</span>tarsus <span class="sc">&lt;</span> <span class="dv">14</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb60-139"><a href="#cb60-139" aria-hidden="true" tabindex="-1"></a>BTdata[BTdata<span class="sc">$</span>habitat <span class="sc">==</span> <span class="st">&quot;forest&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb60-140"><a href="#cb60-140" aria-hidden="true" tabindex="-1"></a>    (BTdata<span class="sc">$</span>hatchdate <span class="sc">&lt;</span> <span class="dv">45</span> <span class="sc">|</span> BTdata<span class="sc">$</span>hatchdate <span class="sc">&gt;</span> <span class="dv">53</span>), ]</span>
+<span id="cb60-141"><a href="#cb60-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-142"><a href="#cb60-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-143"><a href="#cb60-143" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-144"><a href="#cb60-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-145"><a href="#cb60-145" aria-hidden="true" tabindex="-1"></a>Similar result can be achieved by using the <span class="in">`subset()`</span> function - and providing logical expressions as function arguments (<span class="in">`BTdata$`</span> can be omitted).</span>
+<span id="cb60-146"><a href="#cb60-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-147"><a href="#cb60-147" aria-hidden="true" tabindex="-1"></a>**EXERCISE 3:** Achieve the same results as in the previous exercise, but using the <span class="in">`subset()`</span> function, for the first two filterings in EXCERCISE 2.</span>
+<span id="cb60-148"><a href="#cb60-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-149"><a href="#cb60-149" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-150"><a href="#cb60-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-153"><a href="#cb60-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-154"><a href="#cb60-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-155"><a href="#cb60-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-156"><a href="#cb60-156" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(BTdata, sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
+<span id="cb60-157"><a href="#cb60-157" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(BTdata, habitat <span class="sc">==</span> <span class="st">&quot;park&quot;</span> <span class="sc">&amp;</span> dam <span class="sc">==</span> <span class="st">&quot;R187239&quot;</span>)</span>
+<span id="cb60-158"><a href="#cb60-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-159"><a href="#cb60-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-160"><a href="#cb60-160" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-161"><a href="#cb60-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-162"><a href="#cb60-162" aria-hidden="true" tabindex="-1"></a>What is nice about the indexing paradigm, you can use it to do useful things, e.g., to randomply sample rows of data if needed. To do this, you will need the <span class="in">`sample()`</span> function, that is able to randomly pick values from a larger vector, with or without replacement. Have a look at the function&#39;s help file to understand how it works.</span>
+<span id="cb60-163"><a href="#cb60-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-164"><a href="#cb60-164" aria-hidden="true" tabindex="-1"></a>**EXERCISE 4:** Randomly sample 10 rows from the <span class="in">`BTdata`</span> dataset, with replacement.</span>
+<span id="cb60-165"><a href="#cb60-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-166"><a href="#cb60-166" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-167"><a href="#cb60-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-170"><a href="#cb60-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-171"><a href="#cb60-171" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-172"><a href="#cb60-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-173"><a href="#cb60-173" aria-hidden="true" tabindex="-1"></a>BTdata[</span>
+<span id="cb60-174"><a href="#cb60-174" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(BTdata),</span>
+<span id="cb60-175"><a href="#cb60-175" aria-hidden="true" tabindex="-1"></a>        <span class="dv">10</span>,</span>
+<span id="cb60-176"><a href="#cb60-176" aria-hidden="true" tabindex="-1"></a>        <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb60-177"><a href="#cb60-177" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb60-178"><a href="#cb60-178" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb60-179"><a href="#cb60-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-180"><a href="#cb60-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-181"><a href="#cb60-181" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-182"><a href="#cb60-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-183"><a href="#cb60-183" aria-hidden="true" tabindex="-1"></a><span class="fu">### Missing values</span></span>
+<span id="cb60-184"><a href="#cb60-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-185"><a href="#cb60-185" aria-hidden="true" tabindex="-1"></a>You should be always cautious when filtering out missing values. Have a look at this example dataset:</span>
+<span id="cb60-186"><a href="#cb60-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-189"><a href="#cb60-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-190"><a href="#cb60-190" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb60-191"><a href="#cb60-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-192"><a href="#cb60-192" aria-hidden="true" tabindex="-1"></a>missingdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb60-193"><a href="#cb60-193" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>),</span>
+<span id="cb60-194"><a href="#cb60-194" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">6</span>),</span>
+<span id="cb60-195"><a href="#cb60-195" aria-hidden="true" tabindex="-1"></a>    <span class="at">z =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
+<span id="cb60-196"><a href="#cb60-196" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-197"><a href="#cb60-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-198"><a href="#cb60-198" aria-hidden="true" tabindex="-1"></a>missingdata</span>
+<span id="cb60-199"><a href="#cb60-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-200"><a href="#cb60-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-201"><a href="#cb60-201" aria-hidden="true" tabindex="-1"></a>**EXERCISE 5:** Naively applying the <span class="in">`na.omit()`</span> function can lead to unexpected data loss. Filter out the missing values from the <span class="in">`missingdata`</span> dataset using the <span class="in">`na.omit()`</span> function applied to the whole data. How many rows of observations are left?</span>
+<span id="cb60-202"><a href="#cb60-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-203"><a href="#cb60-203" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-204"><a href="#cb60-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-207"><a href="#cb60-207" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-208"><a href="#cb60-208" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-209"><a href="#cb60-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-210"><a href="#cb60-210" aria-hidden="true" tabindex="-1"></a><span class="fu">na.omit</span>(missingdata)</span>
+<span id="cb60-211"><a href="#cb60-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-212"><a href="#cb60-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-213"><a href="#cb60-213" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-214"><a href="#cb60-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-215"><a href="#cb60-215" aria-hidden="true" tabindex="-1"></a>**EXERCISE 6:** Now, let&#39;s assume that variable <span class="in">`x`</span> is not of interest to us. We don;t want to filter out its <span class="in">`NA`</span> values. Filter out the missing values from the <span class="in">`missingdata`</span> dataset, but only for variables <span class="in">`y`</span> and <span class="in">`z`</span>. How many rows of observations are left? Hint: you can use the logical function <span class="in">`is.na()`</span> to check for <span class="in">`NA`</span> values - it is safer than using <span class="in">`==`</span> in this context.</span>
+<span id="cb60-216"><a href="#cb60-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-217"><a href="#cb60-217" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-218"><a href="#cb60-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-221"><a href="#cb60-221" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-222"><a href="#cb60-222" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-223"><a href="#cb60-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-224"><a href="#cb60-224" aria-hidden="true" tabindex="-1"></a>missingdata[<span class="sc">!</span><span class="fu">is.na</span>(missingdata<span class="sc">$</span>y) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(missingdata<span class="sc">$</span>z), ]</span>
+<span id="cb60-225"><a href="#cb60-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-226"><a href="#cb60-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-227"><a href="#cb60-227" aria-hidden="true" tabindex="-1"></a>You could also achieve the same result using <span class="in">`subset()`</span>.</span>
+<span id="cb60-228"><a href="#cb60-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-229"><a href="#cb60-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-230"><a href="#cb60-230" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data wrangling with `tidyverse()`</span></span>
+<span id="cb60-231"><a href="#cb60-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-232"><a href="#cb60-232" aria-hidden="true" tabindex="-1"></a>Manipulating data is an extensive topic, so much that several packages where created to simplify the process. The most widely used philosophy comes from the <span class="in">`tidyverse`</span> dialect of R - it is an ecosystem of functions that provide wrappers to built-in methods and streamline the data manipulation process. The <span class="in">`dplyr`</span> package is one of the most important components of the <span class="in">`tidyverse`</span> - it provides a set of functions that are easy to use and understand.</span>
+<span id="cb60-233"><a href="#cb60-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-234"><a href="#cb60-234" aria-hidden="true" tabindex="-1"></a><span class="in">`dplyr`</span> works through so called *verbs* - functions that perform specific operations on dataframes. Multiple verbs can e used into larger &quot;sentences&quot; - *pipelines* - that are executed sequentially. In a pipeline, the output of one verb is passed to the next one, and so on. This way, you can perform complex operations on dataframes in a very readable way. Subsequent verbs are separated by the <span class="in">`%&gt;%`</span> operator.</span>
+<span id="cb60-235"><a href="#cb60-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-236"><a href="#cb60-236" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb60-237"><a href="#cb60-237" aria-hidden="true" tabindex="-1"></a><span class="fu">## Verbs in `dplyr`</span></span>
+<span id="cb60-238"><a href="#cb60-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-239"><a href="#cb60-239" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`filter()`</span> - select rows based on conditions</span>
+<span id="cb60-240"><a href="#cb60-240" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`select()`</span> - select columns based on conditions</span>
+<span id="cb60-241"><a href="#cb60-241" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`mutate()`</span> - create new columns based on existing ones</span>
+<span id="cb60-242"><a href="#cb60-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`arrange()`</span> - sort rows based on column values</span>
+<span id="cb60-243"><a href="#cb60-243" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`summarise()`</span> - create summary statistics</span>
+<span id="cb60-244"><a href="#cb60-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`group_by()`</span> - group data by specific variables</span>
+<span id="cb60-245"><a href="#cb60-245" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb60-246"><a href="#cb60-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-247"><a href="#cb60-247" aria-hidden="true" tabindex="-1"></a>Before proceeding, make sure you have the <span class="in">`tidyverse`</span> package installed and loaded.</span>
+<span id="cb60-248"><a href="#cb60-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-251"><a href="#cb60-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-252"><a href="#cb60-252" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb60-253"><a href="#cb60-253" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;tidyverse&quot;)</span></span>
+<span id="cb60-254"><a href="#cb60-254" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb60-255"><a href="#cb60-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-256"><a href="#cb60-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-257"><a href="#cb60-257" aria-hidden="true" tabindex="-1"></a>We will be working on the <span class="in">`BTdata`</span> dataset, so make sure it is still loaded.</span>
+<span id="cb60-258"><a href="#cb60-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-259"><a href="#cb60-259" aria-hidden="true" tabindex="-1"></a><span class="fu">### `filter()`</span></span>
+<span id="cb60-260"><a href="#cb60-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-261"><a href="#cb60-261" aria-hidden="true" tabindex="-1"></a>**EXERCISE 7:** Using the <span class="in">`filter()`</span> function, display all rows of the <span class="in">`BTdata`</span> that fulfill the following conditions:</span>
+<span id="cb60-262"><a href="#cb60-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-263"><a href="#cb60-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All males (<span class="in">`sex`</span>) heavier (<span class="in">`weight`</span>) than 11 grams</span>
+<span id="cb60-264"><a href="#cb60-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Birds that bred in parks (<span class="in">`habitat`</span>) that were mother by females R187239 and R187240</span>
+<span id="cb60-265"><a href="#cb60-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-266"><a href="#cb60-266" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-267"><a href="#cb60-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-270"><a href="#cb60-270" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-271"><a href="#cb60-271" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-272"><a href="#cb60-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-273"><a href="#cb60-273" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(BTdata, sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
+<span id="cb60-274"><a href="#cb60-274" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(BTdata, habitat <span class="sc">==</span> <span class="st">&quot;park&quot;</span> <span class="sc">&amp;</span> dam <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;R187239&quot;</span>, <span class="st">&quot;R187932&quot;</span>))</span>
+<span id="cb60-275"><a href="#cb60-275" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-276"><a href="#cb60-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-277"><a href="#cb60-277" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-278"><a href="#cb60-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-279"><a href="#cb60-279" aria-hidden="true" tabindex="-1"></a>Note, that in the examples above I used <span class="in">`filter()`</span> as a typical function. We can however &quot;pipe&quot; the data into the function, in which case we omit the <span class="in">`data`</span> argument in <span class="in">`filter()`</span>. Try to build the filtering again using the <span class="in">`%&gt;%`</span> operator.</span>
+<span id="cb60-280"><a href="#cb60-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-281"><a href="#cb60-281" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-282"><a href="#cb60-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-285"><a href="#cb60-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-286"><a href="#cb60-286" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-287"><a href="#cb60-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-288"><a href="#cb60-288" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-289"><a href="#cb60-289" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span> <span class="sc">&amp;</span> weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
+<span id="cb60-290"><a href="#cb60-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-291"><a href="#cb60-291" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-292"><a href="#cb60-292" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(habitat <span class="sc">==</span> <span class="st">&quot;park&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb60-293"><a href="#cb60-293" aria-hidden="true" tabindex="-1"></a>        dam <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;R187239&quot;</span>, <span class="st">&quot;R187932&quot;</span>))</span>
+<span id="cb60-294"><a href="#cb60-294" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-295"><a href="#cb60-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-296"><a href="#cb60-296" aria-hidden="true" tabindex="-1"></a>The pipe operator <span class="in">`%&gt;%`</span> makes it possible to chain several conditions or other verb operations, one after anotr:</span>
+<span id="cb60-297"><a href="#cb60-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-300"><a href="#cb60-300" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-301"><a href="#cb60-301" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb60-302"><a href="#cb60-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-303"><a href="#cb60-303" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-304"><a href="#cb60-304" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb60-305"><a href="#cb60-305" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
+<span id="cb60-306"><a href="#cb60-306" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-307"><a href="#cb60-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-308"><a href="#cb60-308" aria-hidden="true" tabindex="-1"></a>You also use to save the outpout of your filtering to an object:</span>
+<span id="cb60-309"><a href="#cb60-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-312"><a href="#cb60-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-313"><a href="#cb60-313" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb60-314"><a href="#cb60-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-315"><a href="#cb60-315" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-316"><a href="#cb60-316" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb60-317"><a href="#cb60-317" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> <span class="dv">11</span>)</span>
+<span id="cb60-318"><a href="#cb60-318" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-319"><a href="#cb60-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-320"><a href="#cb60-320" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb60-321"><a href="#cb60-321" aria-hidden="true" tabindex="-1"></a><span class="fu">## Multiple conditions with `AND`</span></span>
+<span id="cb60-322"><a href="#cb60-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-323"><a href="#cb60-323" aria-hidden="true" tabindex="-1"></a>In the <span class="in">`filter()`</span> function, you can join multiple conditions with the <span class="in">`&amp;`</span> operator, or simply separating them with commas. Of course, this does not apply to the <span class="in">`|`</span> operator, which is used for <span class="in">`OR`</span> conditions.</span>
+<span id="cb60-324"><a href="#cb60-324" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb60-325"><a href="#cb60-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-326"><a href="#cb60-326" aria-hidden="true" tabindex="-1"></a><span class="fu">### `select()`</span></span>
+<span id="cb60-327"><a href="#cb60-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-328"><a href="#cb60-328" aria-hidden="true" tabindex="-1"></a>The <span class="in">`select()`</span> function is used to select columns of interest from a dataframe. You can use it to select columns by name, or by their position in the dataframe. You can also use the <span class="in">`-`</span> operator to exclude columns from the selection.</span>
+<span id="cb60-329"><a href="#cb60-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-330"><a href="#cb60-330" aria-hidden="true" tabindex="-1"></a>**EXERCISE 8:** Using the <span class="in">`select()`</span> function, display only the columns <span class="in">`sex`</span>, <span class="in">`weight`</span>, and <span class="in">`tarsus`</span> from the <span class="in">`BTdata`</span> dataset. Join this selection with filtering that displays only individuals heavier than 10.5 grams.</span>
+<span id="cb60-331"><a href="#cb60-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-332"><a href="#cb60-332" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-333"><a href="#cb60-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-336"><a href="#cb60-336" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-337"><a href="#cb60-337" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-338"><a href="#cb60-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-339"><a href="#cb60-339" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-340"><a href="#cb60-340" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> <span class="fl">10.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb60-341"><a href="#cb60-341" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(sex, weight, tarsus)</span>
+<span id="cb60-342"><a href="#cb60-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-343"><a href="#cb60-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-344"><a href="#cb60-344" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-345"><a href="#cb60-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-346"><a href="#cb60-346" aria-hidden="true" tabindex="-1"></a>Using of <span class="in">`select()`</span> is made easier by additional helpers that allow for selecting columns matching certain name patterns, e.g., <span class="in">`starts_with()`</span>, <span class="in">`ends_with()`</span>, <span class="in">`contains()`</span>, <span class="in">`matches()`</span>, <span class="in">`num_range()`</span>, <span class="in">`one_of()`</span>, <span class="in">`everything()`</span>.</span>
+<span id="cb60-347"><a href="#cb60-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-348"><a href="#cb60-348" aria-hidden="true" tabindex="-1"></a>**EXERCISE 9:** In the previous example, instead of the selected columns, pick only those that start with <span class="in">`bill`</span>.</span>
+<span id="cb60-349"><a href="#cb60-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-350"><a href="#cb60-350" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-351"><a href="#cb60-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-354"><a href="#cb60-354" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-355"><a href="#cb60-355" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-356"><a href="#cb60-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-357"><a href="#cb60-357" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-358"><a href="#cb60-358" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> <span class="fl">10.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb60-359"><a href="#cb60-359" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;bill&quot;</span>))</span>
+<span id="cb60-360"><a href="#cb60-360" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-361"><a href="#cb60-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-362"><a href="#cb60-362" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-363"><a href="#cb60-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-364"><a href="#cb60-364" aria-hidden="true" tabindex="-1"></a><span class="fu">### `arrange()`</span></span>
+<span id="cb60-365"><a href="#cb60-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-366"><a href="#cb60-366" aria-hidden="true" tabindex="-1"></a>The <span class="in">`arrange()`</span> function is used to sort rows of a dataframe based on the values of a specific column. You can sort in ascending or descending order.</span>
+<span id="cb60-367"><a href="#cb60-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-368"><a href="#cb60-368" aria-hidden="true" tabindex="-1"></a>**EXERCISE 10:** Using the <span class="in">`arrange()`</span> function, display the <span class="in">`BTdata`</span> dataset sorted by the <span class="in">`weight`</span> column in descending order, selecting only cases belonging to mothers (<span class="in">`dam`</span>): R187239, R187547, and R187292. Tip: yo will need to use the <span class="in">`desc()`</span> helper.</span>
+<span id="cb60-369"><a href="#cb60-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-370"><a href="#cb60-370" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-371"><a href="#cb60-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-374"><a href="#cb60-374" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-375"><a href="#cb60-375" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-376"><a href="#cb60-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-377"><a href="#cb60-377" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-378"><a href="#cb60-378" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(dam <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;R187239&quot;</span>, <span class="st">&quot;R187547&quot;</span>, <span class="st">&quot;R187292&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb60-379"><a href="#cb60-379" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(weight))</span>
+<span id="cb60-380"><a href="#cb60-380" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-381"><a href="#cb60-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-382"><a href="#cb60-382" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-383"><a href="#cb60-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-384"><a href="#cb60-384" aria-hidden="true" tabindex="-1"></a><span class="fu">### `mutate()`</span></span>
+<span id="cb60-385"><a href="#cb60-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-386"><a href="#cb60-386" aria-hidden="true" tabindex="-1"></a>The <span class="in">`mutate()`</span> function is used to create new columns based on existing ones. You can use it to perform calculations on columns, or to create new columns based on logical conditions.</span>
+<span id="cb60-387"><a href="#cb60-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-388"><a href="#cb60-388" aria-hidden="true" tabindex="-1"></a>**EXERCISE 11:** Using the <span class="in">`mutate()`</span> function, create a new column in the <span class="in">`BTdata`</span> dataset that will contain the ratio of <span class="in">`weight`</span> to <span class="in">`tarsus`</span> length. Name this column <span class="in">`wt_tarsus_ratio`</span>.</span>
+<span id="cb60-389"><a href="#cb60-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-390"><a href="#cb60-390" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-391"><a href="#cb60-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-394"><a href="#cb60-394" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-395"><a href="#cb60-395" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-396"><a href="#cb60-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-397"><a href="#cb60-397" aria-hidden="true" tabindex="-1"></a>BTdata <span class="ot">&lt;-</span> BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-398"><a href="#cb60-398" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">wt_tarsus_ratio =</span> weight <span class="sc">/</span> tarsus)</span>
+<span id="cb60-399"><a href="#cb60-399" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(BTdata)</span>
+<span id="cb60-400"><a href="#cb60-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-401"><a href="#cb60-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-402"><a href="#cb60-402" aria-hidden="true" tabindex="-1"></a>■</span>
+<span id="cb60-403"><a href="#cb60-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-404"><a href="#cb60-404" aria-hidden="true" tabindex="-1"></a>**EXERCISE 12:** Using the <span class="in">`mutate()`</span> function and data filtering create a new dataframe with birds that have exceptionally long and narrow bills (i.e., that have the bill length to depth ratio  above 20). Name this dataframe <span class="in">`long_bills`</span>. Display the first rows of this new dataset.</span>
+<span id="cb60-405"><a href="#cb60-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-406"><a href="#cb60-406" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-407"><a href="#cb60-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-410"><a href="#cb60-410" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-411"><a href="#cb60-411" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-412"><a href="#cb60-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-413"><a href="#cb60-413" aria-hidden="true" tabindex="-1"></a>long_bills <span class="ot">&lt;-</span> BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-414"><a href="#cb60-414" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_length <span class="sc">/</span> bill_depth) <span class="sc">%&gt;%</span></span>
+<span id="cb60-415"><a href="#cb60-415" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(bill_ratio <span class="sc">&gt;</span> <span class="dv">20</span>)</span>
+<span id="cb60-416"><a href="#cb60-416" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(long_bills)</span>
+<span id="cb60-417"><a href="#cb60-417" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-418"><a href="#cb60-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-419"><a href="#cb60-419" aria-hidden="true" tabindex="-1"></a><span class="fu">### `summarise()` and `group_by()`</span></span>
+<span id="cb60-420"><a href="#cb60-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-421"><a href="#cb60-421" aria-hidden="true" tabindex="-1"></a>The <span class="in">`summarise()`</span> function is used to create summary statistics for groups of data. The <span class="in">`group_by()`</span> function is used to group data by specific variables. On its own, the <span class="in">`summarise()`</span> is not veru useful, it collapses the dataset to few (even single) rows.</span>
+<span id="cb60-422"><a href="#cb60-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-425"><a href="#cb60-425" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-426"><a href="#cb60-426" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb60-427"><a href="#cb60-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-428"><a href="#cb60-428" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-429"><a href="#cb60-429" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_weight =</span> <span class="fu">mean</span>(weight),</span>
+<span id="cb60-430"><a href="#cb60-430" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd_weight =</span> <span class="fu">sd</span>(weight),</span>
+<span id="cb60-431"><a href="#cb60-431" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb60-432"><a href="#cb60-432" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb60-433"><a href="#cb60-433" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-434"><a href="#cb60-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-435"><a href="#cb60-435" aria-hidden="true" tabindex="-1"></a>Note: I&#39;ve used the helper function <span class="in">`n()`</span> which can be applied to return the number of rows in a given set of data being summarized.</span>
+<span id="cb60-436"><a href="#cb60-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-437"><a href="#cb60-437" aria-hidden="true" tabindex="-1"></a>However, we can group the data by ceretain variables. On its own, groupin does not alter the data structure - but it adds an attribute, that can be used by <span class="in">`summarise()`</span> to perform summaries in groups instead of the whole dataset.\</span>
+<span id="cb60-438"><a href="#cb60-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-439"><a href="#cb60-439" aria-hidden="true" tabindex="-1"></a>**EXERCISE 13:** Using the <span class="in">`group_by()`</span> and <span class="in">`summarise()`</span> functions, calculate the mean and SD of <span class="in">`weight`</span> for each breeding female (<span class="in">`dam`</span>) in the <span class="in">`BTdata`</span> dataset. Also, add another variable displaying the number of cases for each female. At the end, display only the first 6 rows of the summary.</span>
+<span id="cb60-440"><a href="#cb60-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-441"><a href="#cb60-441" aria-hidden="true" tabindex="-1"></a>**Output**</span>
+<span id="cb60-442"><a href="#cb60-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-445"><a href="#cb60-445" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-446"><a href="#cb60-446" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: !expr format %in% c(&quot;html&quot;)</span></span>
+<span id="cb60-447"><a href="#cb60-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-448"><a href="#cb60-448" aria-hidden="true" tabindex="-1"></a>BTdata <span class="sc">%&gt;%</span></span>
+<span id="cb60-449"><a href="#cb60-449" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(dam) <span class="sc">%&gt;%</span></span>
+<span id="cb60-450"><a href="#cb60-450" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_weight =</span> <span class="fu">mean</span>(weight),</span>
+<span id="cb60-451"><a href="#cb60-451" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd_weight =</span> <span class="fu">sd</span>(weight),</span>
+<span id="cb60-452"><a href="#cb60-452" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb60-453"><a href="#cb60-453" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb60-454"><a href="#cb60-454" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">6</span>)</span>
+<span id="cb60-455"><a href="#cb60-455" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-456"><a href="#cb60-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-457"><a href="#cb60-457" aria-hidden="true" tabindex="-1"></a>Do you see anything &quot;odd&quot; in this dataframe rendering in your console (in the way it is displayed)?</span>
+<span id="cb60-458"><a href="#cb60-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-459"><a href="#cb60-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-460"><a href="#cb60-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Putting it all together - a simple wrangling project</span></span>
+<span id="cb60-461"><a href="#cb60-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-462"><a href="#cb60-462" aria-hidden="true" tabindex="-1"></a>We will now see the different data wrangling possibilities in action, using a real-life data example. The data comes in two files: <span class="in">`bt_mb.csv`</span> contains microbiome data of blue tit individuals (their IDs are in the first column); for each individual, we have a list of bacterial taxa (OTUs) listed as subsequent columns - in each, the value indicates how many reads (occurences) of a given taxon were identified in the sample. Second file (<span class="in">`bt_meta.csv`</span>) contains additional data on each individual (their sex, habitat type, year of study, data of sequencing, age and individual ID). the data should be prepared in the following way:</span>
+<span id="cb60-463"><a href="#cb60-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-464"><a href="#cb60-464" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>microbiome data should be changed from wide format to long format (where wthere is a column for sample ID, a column for bacterial taxon, and the columns with 0 or 1 indicating the presence/absence of each taxon); thios database sholud contain only cases, where the number of readswas greater than 2</span>
+<span id="cb60-465"><a href="#cb60-465" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>this new table should be summarised by counting the number of present baterial taxa for each sample ID</span>
+<span id="cb60-466"><a href="#cb60-466" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>finally, summary data should be merged with the individual meta-data: sex, habitat, bird ID and age</span>
+<span id="cb60-467"><a href="#cb60-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-468"><a href="#cb60-468" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb60-469"><a href="#cb60-469" aria-hidden="true" tabindex="-1"></a><span class="fu">## Long vs. wide format</span></span>
+<span id="cb60-470"><a href="#cb60-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-471"><a href="#cb60-471" aria-hidden="true" tabindex="-1"></a>Wide format data contains values belonging to one variable in several olumn categories. Let&#39;s create an example of such data:</span>
+<span id="cb60-472"><a href="#cb60-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-475"><a href="#cb60-475" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-476"><a href="#cb60-476" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb60-477"><a href="#cb60-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-478"><a href="#cb60-478" aria-hidden="true" tabindex="-1"></a>toydata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb60-479"><a href="#cb60-479" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>),</span>
+<span id="cb60-480"><a href="#cb60-480" aria-hidden="true" tabindex="-1"></a>    <span class="at">V1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb60-481"><a href="#cb60-481" aria-hidden="true" tabindex="-1"></a>    <span class="at">V2 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb60-482"><a href="#cb60-482" aria-hidden="true" tabindex="-1"></a>    <span class="at">V3 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb60-483"><a href="#cb60-483" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-484"><a href="#cb60-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-485"><a href="#cb60-485" aria-hidden="true" tabindex="-1"></a>toydata</span>
+<span id="cb60-486"><a href="#cb60-486" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-487"><a href="#cb60-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-488"><a href="#cb60-488" aria-hidden="true" tabindex="-1"></a>We want the data in a format, where each row contains a single observation, and each variable is in a separate column. Here, we would need a column for <span class="in">`ID`</span> and a column for <span class="in">`V`</span> containing the <span class="in">`V1-V3`</span> identifiers, plus a <span class="in">`value`</span> column containing the values of the <span class="in">`V.`</span> variables. The <span class="in">`dplyr`</span> functions allow us to transform between the two types of data display easily:</span>
+<span id="cb60-489"><a href="#cb60-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-492"><a href="#cb60-492" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb60-493"><a href="#cb60-493" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb60-494"><a href="#cb60-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-495"><a href="#cb60-495" aria-hidden="true" tabindex="-1"></a>toydata_long <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
+<span id="cb60-496"><a href="#cb60-496" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>ID,</span>
+<span id="cb60-497"><a href="#cb60-497" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_to =</span> <span class="st">&quot;V&quot;</span>,</span>
+<span id="cb60-498"><a href="#cb60-498" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span></span>
+<span id="cb60-499"><a href="#cb60-499" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb60-500"><a href="#cb60-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-501"><a href="#cb60-501" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative formulation listing columns explicitly</span></span>
+<span id="cb60-502"><a href="#cb60-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-503"><a href="#cb60-503" aria-hidden="true" tabindex="-1"></a>toydata_long <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
+<span id="cb60-504"><a href="#cb60-504" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;V1&quot;</span>, <span class="st">&quot;V2&quot;</span>, <span class="st">&quot;V3&quot;</span>),</span>
+<span id="cb60-505"><a href="#cb60-505" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_to =</span> <span class="st">&quot;V&quot;</span>,</span>
+<span id="cb60-506"><a href="#cb60-506" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span></span>
+<span id="cb60-507"><a href="#cb60-507" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb60-508"><a href="#cb60-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-509"><a href="#cb60-509" aria-hidden="true" tabindex="-1"></a><span class="co"># one can also use starts_with(V)</span></span>
+<span id="cb60-510"><a href="#cb60-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-511"><a href="#cb60-511" aria-hidden="true" tabindex="-1"></a>toydata_long</span>
+<span id="cb60-512"><a href="#cb60-512" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb60-513"><a href="#cb60-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-514"><a href="#cb60-514" aria-hidden="true" tabindex="-1"></a>Of course, there&#39;s an analogous function <span class="in">`pivot_wider()`</span> that does the opposite operation. However, the longer format is usually much more useful and recommended.</span>
+<span id="cb60-515"><a href="#cb60-515" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

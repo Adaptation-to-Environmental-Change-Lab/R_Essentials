@@ -416,3 +416,55 @@ Do you see anything "odd" in this dataframe rendering in your console (in the wa
 
 
 ## Putting it all together - a simple wrangling project
+
+We will now see the different data wrangling possibilities in action, using a real-life data example. The data comes in two files: `bt_mb.csv` contains microbiome data of blue tit individuals (their IDs are in the first column); for each individual, we have a list of bacterial taxa (OTUs) listed as subsequent columns - in each, the value indicates how many reads (occurences) of a given taxon were identified in the sample. Second file (`bt_meta.csv`) contains additional data on each individual (their sex, habitat type, year of study, data of sequencing, age and individual ID). the data should be prepared in the following way:
+
+- microbiome data should be changed from wide format to long format (where wthere is a column for sample ID, a column for bacterial taxon, and the columns with 0 or 1 indicating the presence/absence of each taxon); thios database sholud contain only cases, where the number of readswas greater than 2
+- this new table should be summarised by counting the number of present baterial taxa for each sample ID
+- finally, summary data should be merged with the individual meta-data: sex, habitat, bird ID and age
+
+:::{.callout-note}
+## Long vs. wide format
+
+Wide format data contains values belonging to one variable in several olumn categories. Let's create an example of such data:
+
+```{r}
+#| code-fold: false
+
+toydata <- data.frame(
+    ID = c("A", "B", "C", "D", "E"),
+    V1 = c(1, 0, 1, 0, 1),
+    V2 = c(0, 1, 1, 0, 0),
+    V3 = c(1, 1, 0, 1, 0)
+)
+
+toydata
+```
+
+We want the data in a format, where each row contains a single observation, and each variable is in a separate column. Here, we would need a column for `ID` and a column for `V` containing the `V1-V3` identifiers, plus a `value` column containing the values of the `V.` variables. The `dplyr` functions allow us to transform between the two types of data display easily:
+
+```{r}
+#| code-fold: false
+
+toydata_long <- toydata %>%
+    pivot_longer(cols = -ID,
+        names_to = "V",
+        values_to = "value"
+    )
+
+# alternative formulation listing columns explicitly
+
+toydata_long <- toydata %>%
+    pivot_longer(cols = c("V1", "V2", "V3"),
+        names_to = "V",
+        values_to = "value"
+    )
+
+# one can also use starts_with(V)
+
+toydata_long
+```
+
+Of course, there's an analogous function `pivot_wider()` that does the opposite operation. However, the longer format is usually much more useful and recommended.
+:::
+

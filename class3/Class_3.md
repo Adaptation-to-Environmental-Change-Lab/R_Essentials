@@ -55,28 +55,28 @@ toydata <- rpois(20, 5)
 toydata >= 5
 ```
 
-     [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
-    [13] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+     [1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+    [13] FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE
 
 ``` r
 toydata[toydata >= 5]
 ```
 
-    [1] 6 7 6 5 7 7 6 5
+     [1]  6  5  5  6  7  7  8  6  6  6 11  5  6
 
 ``` r
 indices <- toydata >= 5
 toydata[indices]
 ```
 
-    [1] 6 7 6 5 7 7 6 5
+     [1]  6  5  5  6  7  7  8  6  6  6 11  5  6
 
 **EXCERCISE 1:** Using the `toydata` vector, display only the even
 values. Hint: use the modulo operator `%%` to check for evenness.
 
 **Output**
 
-    [1] 6 6 4 4 6 4 4 4
+    [1] 6 4 6 8 6 4 6 6 6
 
 ■
 
@@ -263,27 +263,27 @@ replacement.
 **Output**
 
         tarsus     back     dam fosternest hatchdate  sex weight habitat
-    352  14.69 548.7637 R187001      H2602        46 Male   10.0  forest
-    202  14.69 548.8602 R187523      B2202        46  Fem   10.0  forest
-    749  14.99 550.3093 R187517      C2202        44  Fem   10.4    park
-    428  14.99 548.0746 R187552      C2602        47 Male   10.0    park
-    375  14.54 549.1945 R186910      A1202        54  UNK   10.2    park
-    259  14.77 551.2129 R187925      H3102        49  UNK    9.9    park
-    111  15.22 550.1262 R187517       C602        44  Fem   10.1    park
-    452  14.54 551.5080 R187951      F2502        50  Fem    9.6    park
-    49   14.61 551.5836 R187517       C602        44  UNK    9.7    park
-    410  14.24 550.0820 R187914       G602        49  Fem    9.6    park
+    233  14.54 552.0244 R187548       E902        48  Fem    9.9    park
+    733  14.24 550.5537 R187562       A602        47 Male    9.9    park
+    622  15.07 549.6052 R187914       G602        49  Fem   10.0  forest
+    160  14.54 550.4472 R187930      G2202        50 Male   10.1    park
+    347  14.24 550.4375 R187552       G502        47 Male    9.4    park
+    383  13.93 551.1091 R187931      G2202        49  Fem   10.0    park
+    18   14.46 549.7494 R187548       E902        48  Fem    9.6    park
+    576  14.61 549.4949 R187824      B1602        53  Fem   10.0  forest
+    650  14.84 548.1412 R187552      C2602        47  Fem    9.8    park
+    304  15.37 547.9119 R187953       B902        51  UNK   10.5  forest
         bill_length bill_depth
-    352      11.775      0.631
-    202      11.764      0.614
-    749      12.021      0.677
-    428      12.003      0.652
-    375      11.636      0.631
-    259      11.839      0.654
-    111      12.206      0.696
-    452      11.589      0.691
-    49       11.696      0.637
-    410      11.378      0.588
+    233      11.590      0.637
+    733      11.345      0.722
+    622      12.061      0.685
+    160      11.592      0.644
+    347      11.364      0.633
+    383      11.171      0.629
+    18       11.512      0.669
+    576      11.695      0.656
+    650      11.902      0.691
+    304      12.282      0.684
 
 ■
 
@@ -738,3 +738,100 @@ Do you see anything “odd” in this dataframe rendering in your console
 (in the way it is displayed)?
 
 ## Putting it all together - a simple wrangling project
+
+We will now see the different data wrangling possibilities in action,
+using a real-life data example. The data comes in two files: `bt_mb.csv`
+contains microbiome data of blue tit individuals (their IDs are in the
+first column); for each individual, we have a list of bacterial taxa
+(OTUs) listed as subsequent columns - in each, the value indicates how
+many reads (occurences) of a given taxon were identified in the sample.
+Second file (`bt_meta.csv`) contains additional data on each individual
+(their sex, habitat type, year of study, data of sequencing, age and
+individual ID). the data should be prepared in the following way:
+
+- microbiome data should be changed from wide format to long format
+  (where wthere is a column for sample ID, a column for bacterial taxon,
+  and the columns with 0 or 1 indicating the presence/absence of each
+  taxon); thios database sholud contain only cases, where the number of
+  readswas greater than 2
+- this new table should be summarised by counting the number of present
+  baterial taxa for each sample ID
+- finally, summary data should be merged with the individual meta-data:
+  sex, habitat, bird ID and age
+
+<div>
+
+> **Long vs. wide format**
+>
+> Wide format data contains values belonging to one variable in several
+> olumn categories. Let’s create an example of such data:
+>
+> ``` r
+> toydata <- data.frame(
+>     ID = c("A", "B", "C", "D", "E"),
+>     V1 = c(1, 0, 1, 0, 1),
+>     V2 = c(0, 1, 1, 0, 0),
+>     V3 = c(1, 1, 0, 1, 0)
+> )
+>
+> toydata
+> ```
+>
+>       ID V1 V2 V3
+>     1  A  1  0  1
+>     2  B  0  1  1
+>     3  C  1  1  0
+>     4  D  0  0  1
+>     5  E  1  0  0
+>
+> We want the data in a format, where each row contains a single
+> observation, and each variable is in a separate column. Here, we would
+> need a column for `ID` and a column for `V` containing the `V1-V3`
+> identifiers, plus a `value` column containing the values of the `V.`
+> variables. The `dplyr` functions allow us to transform between the two
+> types of data display easily:
+>
+> ``` r
+> toydata_long <- toydata %>%
+>     pivot_longer(cols = -ID,
+>         names_to = "V",
+>         values_to = "value"
+>     )
+>
+> # alternative formulation listing columns explicitly
+>
+> toydata_long <- toydata %>%
+>     pivot_longer(cols = c("V1", "V2", "V3"),
+>         names_to = "V",
+>         values_to = "value"
+>     )
+>
+> # one can also use starts_with(V)
+>
+> toydata_long
+> ```
+>
+>     # A tibble: 15 × 3
+>        ID    V     value
+>        <chr> <chr> <dbl>
+>      1 A     V1        1
+>      2 A     V2        0
+>      3 A     V3        1
+>      4 B     V1        0
+>      5 B     V2        1
+>      6 B     V3        1
+>      7 C     V1        1
+>      8 C     V2        1
+>      9 C     V3        0
+>     10 D     V1        0
+>     11 D     V2        0
+>     12 D     V3        1
+>     13 E     V1        1
+>     14 E     V2        0
+>     15 E     V3        0
+>
+> Of course, there’s an analogous function `pivot_wider()` that does the
+> opposite operation. However, the longer format is usually much more
+> useful and recommended.
+
+</div>
