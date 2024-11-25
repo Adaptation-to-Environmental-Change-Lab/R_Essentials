@@ -55,28 +55,28 @@ toydata <- rpois(20, 5)
 toydata >= 5
 ```
 
-     [1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
-    [13] FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE
+     [1]  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+    [13]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
 
 ``` r
 toydata[toydata >= 5]
 ```
 
-     [1]  6  5  5  6  7  7  8  6  6  6 11  5  6
+     [1]  7  8  6  5  8 10  9 12  7  8  7  5
 
 ``` r
 indices <- toydata >= 5
 toydata[indices]
 ```
 
-     [1]  6  5  5  6  7  7  8  6  6  6 11  5  6
+     [1]  7  8  6  5  8 10  9 12  7  8  7  5
 
 **EXCERCISE 1:** Using the `toydata` vector, display only the even
 values. Hint: use the modulo operator `%%` to check for evenness.
 
 **Output**
 
-    [1] 6 4 6 8 6 4 6 6 6
+     [1]  2  8  6  4  8 10 12  4  2  8  4  4
 
 ■
 
@@ -263,27 +263,27 @@ replacement.
 **Output**
 
         tarsus     back     dam fosternest hatchdate  sex weight habitat
-    233  14.54 552.0244 R187548       E902        48  Fem    9.9    park
-    733  14.24 550.5537 R187562       A602        47 Male    9.9    park
-    622  15.07 549.6052 R187914       G602        49  Fem   10.0  forest
-    160  14.54 550.4472 R187930      G2202        50 Male   10.1    park
-    347  14.24 550.4375 R187552       G502        47 Male    9.4    park
-    383  13.93 551.1091 R187931      G2202        49  Fem   10.0    park
-    18   14.46 549.7494 R187548       E902        48  Fem    9.6    park
-    576  14.61 549.4949 R187824      B1602        53  Fem   10.0  forest
-    650  14.84 548.1412 R187552      C2602        47  Fem    9.8    park
-    304  15.37 547.9119 R187953       B902        51  UNK   10.5  forest
+    611  15.37 550.5153 R187964      F1502        53 Male   10.3    park
+    759  14.54 549.2492 R187824      B1602        53  Fem    9.8  forest
+    523  15.30 550.4137 R187155      F2402        47 Male   10.3  forest
+    805  14.16 547.3189 R186902      G1802        52 Male    9.7  forest
+    740  14.24 552.3785 P322402      A2202        45 Male    9.7  forest
+    227  14.77 550.5998 R188000      E1702        51  Fem    9.9    park
+    295  14.69 552.7701 R187942      B1902        50 Male   10.0    park
+    102  13.71 551.4740 R187512      A2202        45  Fem    9.1  forest
+    575  14.84 550.1890 R186908      B1702        53  Fem   10.2    park
+    187  13.86 550.2283 R187343     A22B02        48 Male    9.3  forest
         bill_length bill_depth
-    233      11.590      0.637
-    733      11.345      0.722
-    622      12.061      0.685
-    160      11.592      0.644
-    347      11.364      0.633
-    383      11.171      0.629
-    18       11.512      0.669
-    576      11.695      0.656
-    650      11.902      0.691
-    304      12.282      0.684
+    611      12.363      0.709
+    759      11.595      0.628
+    523      12.248      0.724
+    805      11.322      0.619
+    740      11.376      0.590
+    227      11.797      0.649
+    295      11.768      0.637
+    102      10.975      0.610
+    575      11.866      0.678
+    187      11.110      0.577
 
 ■
 
@@ -833,5 +833,55 @@ individual ID). the data should be prepared in the following way:
 > Of course, there’s an analogous function `pivot_wider()` that does the
 > opposite operation. However, the longer format is usually much more
 > useful and recommended.
+
+</div>
+
+<div>
+
+> **Merging data**
+>
+> Data in multiple tables can be merged together using the
+> `left_join()`, `right_join()`, `inner_join()`, `full_join()`
+> functions. The first argument is the main table, the second is the
+> table to be merged, and the third is the column by which the merge
+> will be performed. If the column names are the same in both tables,
+> you can omit the third argument.
+>
+> ``` r
+> toydata_meta <- data.frame(
+>     Individual_ID = c("A", "B", "C", "D", "E"),
+>     X1 = c(1, 2, 3, 4, 5),
+>     X2 = LETTERS[1:5]
+> )
+>
+> toydata_joined <- left_join(toydata_long, toydata_meta, by = c("ID" = "Individual_ID"))
+> toydata_joined
+> ```
+>
+>     # A tibble: 15 × 5
+>        ID    V     value    X1 X2   
+>        <chr> <chr> <dbl> <dbl> <chr>
+>      1 A     V1        1     1 A    
+>      2 A     V2        0     1 A    
+>      3 A     V3        1     1 A    
+>      4 B     V1        0     2 B    
+>      5 B     V2        1     2 B    
+>      6 B     V3        1     2 B    
+>      7 C     V1        1     3 C    
+>      8 C     V2        1     3 C    
+>      9 C     V3        0     3 C    
+>     10 D     V1        0     4 D    
+>     11 D     V2        0     4 D    
+>     12 D     V3        1     4 D    
+>     13 E     V1        1     5 E    
+>     14 E     V2        0     5 E    
+>     15 E     V3        0     5 E    
+>
+> Distinction between the different flavours depends on what data should
+> be retained in the final table (all records from the first table
+> preset = `left`; all records from the second table present = `right`;
+> only records present in both tables = `inner`; all records present =
+> `full`). In cases where one of the tables don’t contain elevant
+> cases - the functions will ad `NA` values in the resulting table.
 
 </div>

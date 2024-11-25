@@ -468,3 +468,23 @@ toydata_long
 Of course, there's an analogous function `pivot_wider()` that does the opposite operation. However, the longer format is usually much more useful and recommended.
 :::
 
+:::{.callout-note}
+## Merging data
+
+Data in multiple tables can be merged together using the `left_join()`, `right_join()`, `inner_join()`, `full_join()` functions. The first argument is the main table, the second is the table to be merged, and the third is the column by which the merge will be performed. If the column names are the same in both tables, you can omit the third argument.
+
+```{r}
+#| code-fold: false
+
+toydata_meta <- data.frame(
+    Individual_ID = c("A", "B", "C", "D", "E"),
+    X1 = c(1, 2, 3, 4, 5),
+    X2 = LETTERS[1:5]
+)
+
+toydata_joined <- left_join(toydata_long, toydata_meta, by = c("ID" = "Individual_ID"))
+toydata_joined
+```
+
+Distinction between the different flavours depends on what data should be retained in the final table (all records from the first table preset = `left`; all records from the second table present = `right`; only records present in both tables = `inner`; all records present = `full`). In cases where one of the tables don't contain elevant cases - the functions will ad `NA` values in the resulting table.
+:::
