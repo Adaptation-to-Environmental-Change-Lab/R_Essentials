@@ -1,0 +1,430 @@
+---
+title: Class 4 - plotting basics
+author: Szymon Drobniak
+date: '`r Sys.Date()`'
+format:
+    html:
+        toc: true
+        toc-location: left
+        toc-depth: 3
+        theme: simplex
+        embed-resources: true
+        code-fold: true
+        code-tools: true
+        number-sections: true
+        code-block-bg: "#f4f4f4"
+        code-block-border-left: false
+    gfm: default
+crossref:
+    fig-title: Figure
+    tbl-title: Table
+    title-delim: —
+    fig-prefix: Fig.
+    tbl-prefix: Tab.
+    eq-prefix: Eq.
+editor_options:
+    chunk_output_type: console
+execute:
+    cache: false
+    warning: false
+---
+
+```{r setup, include=FALSE}
+library(here)
+format <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+```
+
+::: {.callout-tip}
+## Before you start...
+
+Make sure you have the following set and ready:
+
+- Folder you want touse as your working directory exists on your HDD
+- Set this folder as working directory (using a menu or `setwd("YOUR_PATH)`)
+- Relevant data (if provided) is in your working directory
+:::
+
+**In the below instructions...**
+
+**EXERCISE X:** are bits of code to execute/practice pieces to do, often with only hints on how to perform them.
+
+**Output** indicates the typical output you should expect from a given instruction.
+
+::: {.callout-note}
+## Data
+
+We will work on a simple dataset on cholesterol levels from patients. The data presents cholesterol concentrations in plasma in patients before diet, and after 4 & 8 weeks of diet containing one of two types of margarine. The age group of patients is also indicated. Data can be downloaded here: https://raw.githubusercontent.com/wbabik/Practical_computing/teaching/Class_10/data/Cholesterol_Age_R.csv
+
+```{r echo = T}
+data_chol <- read.table("https://raw.githubusercontent.com/wbabik/Practical_computing/teaching/Class_10/data/Cholesterol_Age_R.csv",
+    sep = ";", header = T,
+    stringsAsFactors = T
+)
+
+head(data_chol)
+summary(data_chol)
+```
+:::
+
+## Formula notation
+
+R modelling and graphing functions use a particular type of notation, originating from the S-PLUS language, to represent relationships between variables. Proportionality in this notation is indicated by `~`, left-hand-side (LHS) of the formula contains dependent variables, right-hand-side (RHS) independent. E.g., `y ~ x + z` may be used to write down a relationship between a measured `y` variable and two independent variables (`x` and `z`). Simple formulas (one LHS and one RHS variable) are covenietnly used to assign variables to axes of a plot.
+
+## Simple R plot
+
+First...
+
+> *It is a myth that R is incapable of producing a final, publication quality (and pretty!) plot that would not have to be modified afterwards :)*
+
+
+To represent data graphically we have to asign it to the proper plot axis. The simplest way of plotting data in R is by using a built-in function `plot()`. Variables to plot can be supplied as its arguments, respectively as **x** (horizontal axis) i **y** (vertical axis) - or by supplying one argument, a formula, describing the relationship between the dependent and independent variable, or in other words between x & y as `y ~ x`. Have a look into `?plot()` to learn more. Note, that - depending on the situation - you may have to provide just variable names together with the name of the dataset - using `data = ...` - or to directly call variables in your dataset (e.g. by using `...$variable_x`).
+
+**EXERCISE 1:**Try to recreate the below plot using the loaded data. Consult the `plot()` function if necessary.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration")
+
+### OR
+
+# plot(x = data_chol$Before, y = data_chol$After8weeks,
+# xlab = "Cholesterol conc. before diet",
+# ylab = "Cholesterol conc. after 8 weeks",
+# main = "Change of cholesterol concentration")
+```
+
+**EXERCISE 2:** Modify the plot changing the shapes and colours used on the plot (hints can be found here: <https://www.r-graph-gallery.com/6-graph-parameters-reminder.html>). Here I'm setting the symbols as blue squares.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue")
+```
+
+
+**EXERCISE 3:** The `plot()` function has the `type` argument - try to see what this argument does. What happens if we set it to `'n'`?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue", type = 'l')
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue", type = 'h')
+```
+
+
+Using the `type = 'l'` leads to a surprising problem - instead of an expected zig-zag line connecting the points we gat a weird squiggly bunch of loops. What should be done to the data to retrieve a proper line plot, like the one below?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol[order(data_chol$Before),],
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue", type = 'l')
+```
+
+
+## Using colours in R plots
+
+**EXERCISE 4:** Colours and shapes on a plot can be changed at will. Try to experiment in order to recreate the below plot. Note: you have to creat your own data or input it directly into the plotting function. Information about colour codes can be found here: <http://derekogle.com/NCGraphing/resources/colors> - in summary, you can choose them by indicating their names (e.g. `"hotpink"`) or specifying a colour's name in a hexadecimal number system (e.g. `"#AA6574"`).
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+N <- 11
+plot(1:N, rep(1, N), cex = 10, pch = 19,
+     col = c('firebrick3', 'orangered', 'orange', 'goldenrod',
+             'greenyellow', 'chartreuse', 'springgreen', 'darkturquoise',
+             'cornflowerblue', 'mediumblue', 'blueviolet'),
+     xlab = 'x', ylab = 'y')
+
+### OR for automated colour generation
+
+plot(1:N, rep(1, N), cex = 10, pch = 19,
+     col = rainbow(N),
+     xlab = 'x', ylab = 'y')
+```
+
+
+## Assigning colours to variables
+
+Apart from naming the colours directly - we can assign them to particular values in our data. If data has values directly compatible with R colours (i.e., integers from 1 to 9), they can be used directly as colour identifiers. 
+
+**EXERCISE 5:** The below plot uses colours to cod the age groups in our data - try to recreate this plot by linking the `col` option to the relevant data variable. What key is ues to choose specific colours on the plot?
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = data_chol$AgeGroup)
+```
+
+
+**EXERCISE 6:** If you would like to use non-default colours here, you have to use the fact that levels o a categorical variable in R (e.g., `AgeGroup`) are coded as integers, and hence can be treated as indices selecting values from a vector of colour names/codes:
+
+**Output**
+
+```{r echo = T}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = c('pink', 'chartreuse', 'brown')[data_chol$AgeGroup])
+```
+
+***
+
+## Histogram
+
+Histogram is a useful and frequently used type of plot - it can be generated using the `hist()` function.
+
+**EXERCISE 7:** Create a histogram of 50 ranom samples from a normal distribution with mean 20 and standard deviation 4 (you may want to use the following call `rnorm(50, 20, 4)`).
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+set.seed(123456789)
+vec_data <- rnorm(50, 20, 4)
+hist(vec_data)
+```
+
+Histogram does not have one colour parameter - each rectangle has a border and its filling. Consulting `?hist()` check how to reproduce the below version of a histogram.
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+set.seed(123456789)
+vec_data <- rnorm(50, 20, 4)
+hist(vec_data, col = 'red', border = NA)
+```
+
+**EXERCISE 8:** Redo the histogram by increasing the number of binning intervals.
+**Output** (example)
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+set.seed(123456789)
+vec_data <- rnorm(50, 20, 4)
+hist(vec_data, 20)
+```
+
+**EXERCISE 9:** instead of a histogram, distributional data can be presented using a smoothed density of data (*kernel density*). You can use the built-in function `density()` to produce such curve, and it can be overlaid on an existing plot using the `lines()` function (similarly, to the `points()` function overlaying points, the `lines()` function does not create a new plot but adds lines to an existing plot ). Try to recreate the above histogram adding to it an overlaid density line:
+**Output** (example)
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+set.seed(123456789)
+vec_data <- rnorm(50, 20, 4)
+hist(vec_data, 20, freq = F)
+lines(density(vec_data), col = 'red', lwd = 2)
+```
+
+
+## Setting non-graphical parameters
+
+R plots generated by the basic function can be modified in many ways, to adjust their appearance to particular needs. A number of parameters can be set inside the `plot()` function, but others can be set using a special `par()` function.
+
+**EXERCISE 10:** The plotting area can be modified by setting the limits of the axes - to achieve this modify the `ylim` and `xlim` arguments, they take vectors of length 2 as values.
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue",
+xlim = c(0, 10), ylim = c(-5, 15))
+```
+
+Such option becomes especially useful when plotting custom curves, that need to be displayed in some speciic range. Compare the two below plots:
+
+```{r echo = T}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue")
+
+curve(-0.6 + x, add = T)
+curve(2.6 - 0.25*x + 0.125*x^2, add = T, col = 'red')
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue",
+xlim = c(0, 13), ylim = c(-5, 15))
+
+curve(-0.6 + x, add = T)
+curve(2.6 - 0.25*x + 0.125*x^2, add = T, col = 'red')
+```
+
+
+**EXERCISE 11:** Try applying similar modification to our final histogram, to avoid automativ selection of x-axis ends (which slightly misses the limits o actual data).
+
+**Output** (example)
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+set.seed(123456789)
+vec_data <- rnorm(50, 20, 4)
+hist(vec_data, 20, freq = F, xlim = c(5, 30))
+lines(density(vec_data), col = 'red', lwd = 2)
+```
+
+
+**EXERCISE 12:** The plotting function options can also be used to change the type of axes to logged - we can achieve this in two ways, resulting in two different ways of presentation. The simplest is to use the `log` option in the `plot()` function:
+**Output**
+
+```{r echo = T}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue", log = "x")
+```
+
+However, you can also directly log the data while plotting it (how would you achieve this?).
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ log(Before), data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue")
+```
+
+The plots look similar - but there is one fundamental difference - what is it? What type of log was used in these plots?
+
+**EXERCISE 13:** In order to modify plot parameters such as its margins - we have to use the `par()` function, and we should modify specific parameters in it. Be aware, that the setting chosen will affect any future plot produced in a given session of R. Try using the `mai` option (which specifies distances in inches) or `mar` option (which specify distances in lines of text) to change the plot margins (each of these options takes a vector with 4 elements, the margins of bottom, left, top and right edge). The below picture demonstrates how the margin parameters are interpreted with respect to a plotting area:
+
+![](./mars.png)
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue", log = "x")
+
+par(mar = c(7,10,10,10))
+plot(After8weeks ~ Before, data = data_chol,
+xlab = "Cholesterol conc. before diet",
+ylab = "Cholesterol conc. after 8 weeks",
+main = "Change of cholesterol concentration",
+pch = 15, col = "blue", log = "x")
+```
+
+If at any stage you use the `par()` function and loose track of what parameters have been modified and which haven't (or - another function happens to modify some graphical parameters beyond your control) you can easily reset the plotting standard output to the default graphical parameters. Just run:
+
+```{r eval = F, echo = T}
+dev.off()
+```
+
+which will close and reset the active (screen) plotting output.
+
+
+## Using `ggplot2` - introduction
+
+Control over the graphical parameters in the `plot()` function is rudimentary. The **ggplot2** package gives much more control over how the plots are made and built. The **ggplot2** package is based on so called graphics grammar, a set of rules describing the visual appearance of a plot:
+
+* linking of data to specific elements of a plot (so called **mapping**) is separated from its actual appearance (i.e., **aesthetics**);
+* the plot has a layered structure, with latter elements appearing on top of the former ones;
+* if possible all plot elements should be built on the go, inside of the plotting code, without the need of modifying/transforming the original data.
+
+A simple *ggplot2* graph may be structured as follows:
+
+```{r eval = FALSE, include = T, echo = T}
+mygraph <- ggplot(data = MYDATA,
+                  mapping = aes(x = VAR1, y = VAR2, ...)) +
+  geom_1(OPTIONS) +
+  geom_2(OPTIONS)
+
+plot(mygraph)
+
+graph2 <- mygraph + geom_3
+plot(graph2)
+```
+
+Calling the `ggplot()` function may be used only to create an object of class `ggplot`, without displaying the actual graph. Such object will contain the data and its mappings to specific elements of the final plot. To display it, we need additional function from the `geom_...` family, which add specific visual elements to the defined mappings (e.g. `geom_point` adds scatterpoints, `geom_hist` forms a histogram). Subsequent elements can be concatenated using the `+` operator. other elements that can be added to the plot using `+` are display and aesthetic rules, e.g. `theme()`, which describe the appearance of non-data elements of a plot.
+
+Load the `ggplot2` - if you don't have it use `install.packages()` to install it.
+
+```{r echo = T}
+# install.packages('ggplot2')
+library(ggplot2)
+```
+
+
+## `ggplot2` scatterplot
+**EXERCISE 14:** Make a scatterplot similar to one of the previous excersises, mapping the concentrations of cholesterol on the x and y axes. Use blue squares as points. You may want to use the `cex` option to increase the default symbol size (`cex` defines a multiplicative coefficient, that increases or decreases plot elements given number of times).
+
+**Output**
+
+```{r}
+#| echo: !expr format %in% c("html")
+
+plot1 <- ggplot(data = data_chol, mapping = aes(x = Before, y = After8weeks)) +
+  geom_point(color = 'blue', shape = 15, cex = 3)
+plot1
+```
