@@ -419,7 +419,7 @@ Do you see anything "odd" in this dataframe rendering in your console (in the wa
 
 We will now see the different data wrangling possibilities in action, using a real-life data example. The data comes in two files: `bt_mb.csv` contains microbiome data of blue tit individuals (their IDs are in the first column); for each individual, we have a list of bacterial taxa (OTUs) listed as subsequent columns - in each, the value indicates how many reads (occurences) of a given taxon were identified in the sample. Second file (`bt_meta.csv`) contains additional data on each individual (their sex, habitat type, year of study, data of sequencing, age and individual ID). the data should be prepared in the following way:
 
-- microbiome data should be changed from wide format to long format (where wthere is a column for sample ID, a column for bacterial taxon, and the columns with 0 or 1 indicating the presence/absence of each taxon); thios database sholud contain only cases, where the number of readswas greater than 2
+- microbiome data should be changed from wide format to long format (where wthere is a column for sample ID, a column for bacterial taxon, and the columns with 0 or 1 indicating the presence/absence of each taxon); this database sholud contain only cases, where the number of reads was greater than 2
 - this new table should be summarised by counting the number of present baterial taxa for each sample ID
 - finally, summary data should be merged with the individual meta-data: sex, habitat, bird ID and age
 
@@ -490,3 +490,61 @@ toydata_joined
 
 Distinction between the different flavours depends on what data should be retained in the final table (all records from the first table preset = `left`; all records from the second table present = `right`; only records present in both tables = `inner`; all records present = `full`). In cases where one of the tables don't contain elevant cases - the functions will ad `NA` values in the resulting table.
 :::
+
+### Possible approach
+
+```{r}
+#| code-fold: false
+
+bt_mb <- read.table(here("data", "bt_mb.csv"),
+    header = TRUE,
+    sep = ";",
+    stringsAsFactors = FALSE
+)
+
+bt_meta <- read.table(here("data", "bt_meta.csv"),
+    header = TRUE,
+    sep = ";",
+    stringsAsFactors = TRUE
+)
+
+bt_mb_l <- bt_mb %>%
+    pivot_longer(
+        cols = -Ind_ring,
+        names_to = "OTU",
+        values_to = "reads"
+    ) %>%
+    filter(reads > 2)
+
+bt_mb_l_summ <- bt_mb_l %>%
+    group_by(Ind_ring) %>%
+    summarise(n_taxa = n())
+
+bt_mb_l_summ_meta <- left_join(bt_mb_l_summ, bt_meta,
+    by = c("Ind_ring" = "sample.id")
+) %>%
+    select(bird_id, sex, age, habitat, n_taxa)
+```
+
+Note the use of special function `n()` used to count cases in subgroups. The distinct steps can be merged into one pipeline.
+
+```{r}
+#| code-fold: false
+
+bt_mb_l_summ_meta <- bt_mb %>%
+    pivot_longer(
+        cols = -Ind_ring,
+        names_to = "OTU",
+        values_to = "reads"
+    ) %>%
+    filter(reads > 2) %>%
+    group_by(Ind_ring) %>%
+    summarise(n_taxa = n()) %>%
+    left_join(bt_meta,
+        by = c("Ind_ring" = "sample.id")
+    ) %>%
+    select(
+        bird_id, sex, age,
+        habitat, n_taxa
+    )
+```

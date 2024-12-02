@@ -1,7 +1,7 @@
 Class 3 - data types, daa loading, data manipulation
 ================
 Szymon Drobniak
-11/25/24
+12/1/24
 
 <div>
 
@@ -55,28 +55,28 @@ toydata <- rpois(20, 5)
 toydata >= 5
 ```
 
-     [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-    [13] FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE
+     [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+    [13]  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
 
 ``` r
 toydata[toydata >= 5]
 ```
 
-     [1] 7 6 6 6 5 6 6 6 5 5 6
+     [1]  6  8  6  7  7  5 10  5  5  5
 
 ``` r
 indices <- toydata >= 5
 toydata[indices]
 ```
 
-     [1] 7 6 6 6 5 6 6 6 5 5 6
+     [1]  6  8  6  7  7  5 10  5  5  5
 
 **EXCERCISE 1:** Using the `toydata` vector, display only the even
 values. Hint: use the modulo operator `%%` to check for evenness.
 
 **Output**
 
-     [1] 6 6 6 4 4 6 4 4 6 6 6
+    [1]  6  8  4  6  2  4  4 10
 
 ■
 
@@ -263,27 +263,27 @@ replacement.
 **Output**
 
         tarsus     back     dam fosternest hatchdate  sex weight habitat
-    182  14.61 549.2631 R187518      A1302        45 Male    9.9    park
-    674  14.61 549.4641 R187548      D1202        48 Male    9.8    park
-    722  14.92 549.7544 R186917      H2502        55 Male   10.1    park
-    655  14.61 551.9284 R187531      C1302        46  Fem    9.7  forest
-    219  14.46 551.7164 R187546       D902        47  UNK    9.6    park
-    200  14.16 548.3299 R186907       C102        53  Fem    9.8    park
-    425  14.16 550.6645 R187569     A22B02        48 Male    9.7  forest
-    450  14.08 550.0436 R187588       E702        47  Fem    9.7  forest
-    605  13.86 550.1148 R188000      F2702        51 Male    9.3    park
-    429  13.78 550.7965 R187595      C2402        48 Male    9.4  forest
+    148  15.14 547.4777 R187155       E702        47 Male   10.1    park
+    387  13.48 549.8759 R186910      A1202        54  Fem    9.1    park
+    506  13.93 548.6402 R187546      D1002        47  Fem    9.3    park
+    299  14.16 547.9649 R186902      B1402        52  UNK    9.8  forest
+    498  14.77 550.5850 R187947      B1202        51 Male   10.0    park
+    439  15.22 549.8951 R187239       B202        48  Fem   10.1  forest
+    108  14.84 550.3242 R187945      C2302        49 Male    9.8  forest
+    381  14.77 550.9502 R187927       D402        50  Fem   10.3    park
+    195  14.54 548.8324    Fem3      C1902        47 Male   10.1  forest
+    384  14.08 549.0500 R187926       G402        49  Fem    9.5  forest
         bill_length bill_depth
-    182      11.627      0.632
-    674      11.661      0.609
-    722      11.933      0.640
-    655      11.713      0.630
-    219      11.551      0.639
-    200      11.313      0.662
-    425      11.318      0.559
-    450      11.305      0.630
-    605      11.074      0.578
-    429      11.066      0.619
+    148      12.075      0.682
+    387      10.795      0.576
+    506      11.180      0.613
+    299      11.275      0.554
+    498      11.839      0.671
+    439      12.192      0.610
+    108      11.875      0.654
+    381      11.825      0.684
+    195      11.633      0.614
+    384      11.248      0.650
 
 ■
 
@@ -752,8 +752,8 @@ individual ID). the data should be prepared in the following way:
 - microbiome data should be changed from wide format to long format
   (where wthere is a column for sample ID, a column for bacterial taxon,
   and the columns with 0 or 1 indicating the presence/absence of each
-  taxon); thios database sholud contain only cases, where the number of
-  readswas greater than 2
+  taxon); this database sholud contain only cases, where the number of
+  reads was greater than 2
 - this new table should be summarised by counting the number of present
   baterial taxa for each sample ID
 - finally, summary data should be merged with the individual meta-data:
@@ -887,3 +887,58 @@ individual ID). the data should be prepared in the following way:
 > cases - the functions will ad `NA` values in the resulting table.
 
 </div>
+
+### Possible approach
+
+``` r
+bt_mb <- read.table(here("data", "bt_mb.csv"),
+    header = TRUE,
+    sep = ";",
+    stringsAsFactors = FALSE
+)
+
+bt_meta <- read.table(here("data", "bt_meta.csv"),
+    header = TRUE,
+    sep = ";",
+    stringsAsFactors = TRUE
+)
+
+bt_mb_l <- bt_mb %>%
+    pivot_longer(
+        cols = -Ind_ring,
+        names_to = "OTU",
+        values_to = "reads"
+    ) %>%
+    filter(reads > 2)
+
+bt_mb_l_summ <- bt_mb_l %>%
+    group_by(Ind_ring) %>%
+    summarise(n_taxa = n())
+
+bt_mb_l_summ_meta <- left_join(bt_mb_l_summ, bt_meta,
+    by = c("Ind_ring" = "sample.id")
+) %>%
+    select(bird_id, sex, age, habitat, n_taxa)
+```
+
+Note the use of special function `n()` used to count cases in subgroups.
+The distinct steps can be merged into one pipeline.
+
+``` r
+bt_mb_l_summ_meta <- bt_mb %>%
+    pivot_longer(
+        cols = -Ind_ring,
+        names_to = "OTU",
+        values_to = "reads"
+    ) %>%
+    filter(reads > 2) %>%
+    group_by(Ind_ring) %>%
+    summarise(n_taxa = n()) %>%
+    left_join(bt_meta,
+        by = c("Ind_ring" = "sample.id")
+    ) %>%
+    select(
+        bird_id, sex, age,
+        habitat, n_taxa
+    )
+```
