@@ -1,5 +1,5 @@
 ---
-title: Class 2 - data types, daa loading, data manipulation
+title: Class 2 - data types, data loading, data manipulation
 author: Szymon Drobniak
 date: '`r Sys.Date()`'
 format:
